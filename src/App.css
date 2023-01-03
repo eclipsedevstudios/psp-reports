@@ -1,9 +1,7 @@
-/*
-Puppeteer exports PDFs at a default resolution of 96ppi, so to match a standard 
-letter size, our dimensions should be (8.5 x 11) * 96 = 816px by 1056px
- */
-.pdf-page-container {
-  height: 1056px;
-  width: 816px;
-  background-color: white;
+body {
+  font-family: 'Manrope'; 
+}
+
+code {
+  font-size: 14px;
 }
