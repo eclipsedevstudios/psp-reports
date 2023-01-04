@@ -65,14 +65,14 @@ const TableOfContentsPage = () => {
           </TableOfContentsSublist>
           <li>
             <TableOfContentsItem>
-              Performance Mindset
+              Mental Skills
             </TableOfContentsItem>
             <TableOfContentsPageNum>
               11
             </TableOfContentsPageNum>
           </li>
           <TableOfContentsSublist>
-            <li>Your performance mindset, 11</li>
+            <li>Your mental skills, 11</li>
             <li>Training and maintenance, 12-13</li>
             <li>Case study, 14</li>
             <li>Facts and figures, 15</li>
@@ -93,28 +93,28 @@ const TableOfContentsPage = () => {
           </TableOfContentsSublist>
           <li>
             <TableOfContentsItem>
-              Physical Wellness
+              Health Habits
             </TableOfContentsItem>
             <TableOfContentsPageNum>
               21
             </TableOfContentsPageNum>
           </li>
           <TableOfContentsSublist>
-            <li>Your physical wellness, 21</li>
+            <li>Your health habits, 21</li>
             <li>Training and maintenance, 22-23</li>
             <li>Case study, 24</li>
             <li>Facts and figures, 25</li>
           </TableOfContentsSublist>
           <li>
             <TableOfContentsItem>
-              Mental Wellness
+              Self-Reflection
             </TableOfContentsItem>
             <TableOfContentsPageNum>
               26
             </TableOfContentsPageNum>
           </li>
           <TableOfContentsSublist>
-            <li>Your mental wellness, 26</li>
+            <li>Your self-reflection results, 26</li>
             <li>Training and maintenance, 27-28</li>
             <li>Case study, 29</li>
             <li>Facts and figures, 30</li>

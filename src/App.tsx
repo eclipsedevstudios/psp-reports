@@ -7,7 +7,7 @@ import SummaryPage from './mindset-assessment-pages/SummaryPage';
 import ClusterSummaryPage from './mindset-assessment-pages/ClusterSummaryPage';
 import { ClusterResult, SurveyResponse } from './models/surveyResponse';
 import { clusters } from './constants/clusters';
-import { sampleData } from './constants/sampleData';
+// import { sampleData } from './constants/sampleData';
 import './App.css';
 
 function App() {
@@ -21,15 +21,15 @@ function App() {
 
   // Get raw survey response when responseId changes
   useEffect(() => {
-    // const fetchRawSurveyResponse = async() => {
-    //   const response = await fetch(`http://localhost:3001/survey_response?response_id=${responseId}`);
-    //   const data = await response.json();
-    //   parseSurveyResponse(data);
-    // }
+    const fetchRawSurveyResponse = async() => {
+      const response = await fetch(`http://localhost:3001/survey_response?response_id=${responseId}`);
+      const data = await response.json();
+      parseSurveyResponse(data);
+    }
 
-    // fetchRawSurveyResponse()
-    //   .catch(console.error);
-    parseSurveyResponse(sampleData);
+    fetchRawSurveyResponse()
+      .catch(console.error);
+    // parseSurveyResponse(sampleData);
   }, [responseId]);
 
   const handleSelectResponseId = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -48,26 +48,36 @@ function App() {
         name: 'growth_mindset',
         label: 'Growth Mindset',
         percentile: data.GP,
+        percentileCollege: data.MSColComparison,
+        percentilePro: data.MSProComparison,
       },
       {
-        name: 'performance_mindset',
-        label: 'Performance Mindset',
+        name: 'mental_skills',
+        label: 'Mental Skills',
         percentile: data.PP,
+        percentileCollege: data.MSColComparison,
+        percentilePro: data.MSProComparison,
       },
       {
         name: 'team_support',
         label: 'Team Support',
         percentile: data.TP,
+        percentileCollege: data.TSColComparison,
+        percentilePro: data.TSProComparison,
       },
       {
-        name: 'physical_wellness',
-        label: 'Physical Wellness',
+        name: 'health_habits',
+        label: 'Health Habits',
         percentile: data.PhP,
+        percentileCollege: data.HHColComparison,
+        percentilePro: data.HHProComparison,
       },
       {
-        name: 'mental_wellness',
-        label: 'Mental Wellness',
+        name: 'self_reflection',
+        label: 'Self-Reflection',
         percentile: data.MP,
+        percentileCollege: data.SRColComparison,
+        percentilePro: data.SRProComparison,
       },
     ]
 
@@ -79,6 +89,8 @@ function App() {
       clusterResults
     })
   }
+
+  console.log(surveyResponse)
 
   return (
     <>
