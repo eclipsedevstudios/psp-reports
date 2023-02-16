@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import DayJS from 'dayjs';
 
 import { PageWrapper } from '../components-shared/PageWrapper';
 import { PageHeader } from '../components-shared/PageHeader';
 import { PageHeaderTitle } from '../components-shared/PageHeaderTitle';
 import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
+import PageFooter from '../components-shared/PageFooter';
 import { SurveyResponse } from '../models/surveyResponse';
 
 const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
@@ -13,28 +13,52 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
       <PageHeader>
         <div>
           <PageHeaderSubtitle>
-            Summary
+            Your Summary
           </PageHeaderSubtitle>
           <PageHeaderTitle>
-            Report
+              Report
           </PageHeaderTitle>
         </div>
         <AthleteCard>
           <h1>{surveyResponse.athleteName}</h1>
           <hr />
-          <p><b>Level</b>: {surveyResponse.level}</p>
-          <p><b>Date</b>: {DayJS(surveyResponse.recordedDate).format('MM/DD/YYYY')}</p>
+          <b>Level</b>: {surveyResponse.level}
+          <br /><b>Date</b>: {surveyResponse.recordedDate}
         </AthleteCard>
       </PageHeader>
+      <br /><br />
       <ClusterResults>
         {surveyResponse.clusterResults.map((cluster, index) => (
-          <ClusterResult key={`cluster-results-${index}`}>
-            <td>{cluster.label}</td>
-            <td>
-              <PercentileVisualization percentile={cluster.percentile} />
-            </td>
-            <td>{cluster.percentile} percentile</td>
-          </ClusterResult>
+          <>
+            <h1>{cluster.label}</h1>
+            <ClusterResult key={`cluster-results-${index}`}>
+              <tr>
+                <td>Compared with peers</td>
+                <td>
+                  <PercentileVisualization percentile={cluster.percentile} />
+                </td>
+                <PercentileNumber>{cluster.percentile}th</PercentileNumber>
+              </tr>
+              {surveyResponse.level === 'high_school' && (
+                <tr>
+                  <td>Compared with college athletes</td>
+                  <td>
+                    <PercentileVisualization percentile={cluster.percentileCollege} />
+                  </td>
+                  <PercentileNumber>{cluster.percentile}th</PercentileNumber>
+                </tr>
+              )}
+              {surveyResponse.level === 'collegiate' || surveyResponse.level === 'semi_pro' || surveyResponse.level === 'adult_rec' && (
+                <tr>
+                  <td>Compared with pro athletes</td>
+                  <td>
+                    <PercentileVisualization percentile={cluster.percentilePro} />
+                  </td>
+                  <PercentileNumber>{cluster.percentile}th</PercentileNumber>
+                </tr>
+              )}
+            </ClusterResult>
+          </>
         ))}
       </ClusterResults>
       <HowToReadCard>
@@ -50,6 +74,8 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
           of your mental skills throughout your athletic endeavors.
         </p>
       </HowToReadCard>
+      <ClearDiv />
+      <PageFooter pageNum={3} />
     </PageWrapper>
   );
 }
@@ -72,32 +98,28 @@ const PercentileVisualization = ({ percentile }: PercentileVisualizationProps) =
 const BASE = 8;
 
 const AthleteCard = styled.div`
-  padding: ${BASE * 2}px;
-  width: 300px;
-  background-color: rgb(227, 227, 227);
+  background-color: rgb(239, 239, 239);
+  padding: ${BASE}px ${BASE * 2}px;
+  min-width: 200px;
 
   > h1 {
     font-family: 'League Gothic';
     font-size: 28px;
     text-transform: uppercase;
     margin: 0px;
-    letter-spacing: 1px;
-  }
-
-  > hr {
-    box-shadow: 0px;
-    border-top: 1px solid #000;
   }
 `;
 
-const ClusterResults = styled.table`
-  margin-top: ${BASE * 10}px;
-  border-spacing: ${BASE * 3}px;
+const ClusterResults = styled.div`
+  > h1 {
+    font-size: 18px;
+    margin: 0px;
+  }
 `;
 
-const ClusterResult = styled.tr`
-  font-size: 20px;
-  font-weight: bold;
+const ClusterResult = styled.table`
+  border-spacing: ${BASE}px;
+  margin-left: ${BASE * 6}px;
 `;
 
 const PercentileVisualizationWrapper = styled.div`
@@ -112,9 +134,14 @@ const PercentileBar = styled.div`
   background-color: rgb(239, 239, 239);
 `;
 
+const PercentileNumber = styled.td`
+  font-size: 18px;
+  font-weight: bold;
+`;
+
 const HowToReadCard = styled.div`
   padding: ${BASE * 2}px;
-  margin-top: ${BASE * 10}px;
+  margin-top: ${BASE * 4}px;
   width: 500px;
   background-color: rgb(227, 227, 227);
   float: right;
@@ -125,8 +152,11 @@ const HowToReadCard = styled.div`
     font-size: 24px;
     text-transform: uppercase;
     margin: 0px;
-    letter-spacing: 1px;
   }
+`;
+
+const ClearDiv = styled.div`
+  clear: both;
 `;
 
 export default SummaryPage;

@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import CoverPage from './mindset-assessment-pages/CoverPage';
-import TableOfContentsPage from './mindset-assessment-pages/TableOfContentsPage';
+import FiveClustersPage from './mindset-assessment-pages/FiveClustersPage';
+import MindsetAssessmentPage from './mindset-assessment-pages/MindsetAssessmentPage';
 import SummaryPage from './mindset-assessment-pages/SummaryPage';
 import ClusterSummaryPage from './mindset-assessment-pages/ClusterSummaryPage';
+import WrapUpPage from './mindset-assessment-pages/WrapUpPage';
 import { ClusterResult, SurveyResponse } from './models/surveyResponse';
 import { clusters } from './constants/clusters';
 // import { sampleData } from './constants/sampleData';
@@ -16,99 +17,71 @@ function App() {
   const params = new URLSearchParams(url.search);
   const reportOnlyMode = params.get('reportOnly');
 
-  const [responseId, setResponseId] = useState('R_1inhiUBTksen9N1');
-  const [surveyResponse, setSurveyResponse] = useState<SurveyResponse | null>(null);
-
-  // Get raw survey response when responseId changes
-  useEffect(() => {
-    const fetchRawSurveyResponse = async() => {
-      const response = await fetch(`http://localhost:3001/survey_response?response_id=${responseId}`);
-      const data = await response.json();
-      parseSurveyResponse(data);
-    }
-
-    fetchRawSurveyResponse()
-      .catch(console.error);
-    // parseSurveyResponse(sampleData);
-  }, [responseId]);
-
-  const handleSelectResponseId = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setResponseId(e.target.value);
-  }
-
-  // Parse raw survey response (using Qualtrics field names)
-  const parseSurveyResponse = (rawSurveyResponse: any) => {
-    const data = rawSurveyResponse.result.values;
-    const athleteName = data.QID9_TEXT;
-    const email = data.QID12_TEXT;
-    const recordedDate = data.recordedDate;
-    const level = data.Level;
-    const clusterResults: ClusterResult[] = [
+  const surveyResponse: SurveyResponse = {
+    athleteName: params.get('athleteName') || '',
+    recordedDate: params.get('recordedDate') || '',
+    level: params.get('level') || '',
+    clusterResults: [
       {
         name: 'growth_mindset',
         label: 'Growth Mindset',
-        percentile: data.GP,
-        percentileCollege: data.MSColComparison,
-        percentilePro: data.MSProComparison,
+        percentile: params.get('growthMindsetPercentile'),
+        percentileCollege: params.get('growthMindsetPercentileCollege'),
+        percentilePro: params.get('growthMindsetPercentilePro'),
       },
       {
         name: 'mental_skills',
         label: 'Mental Skills',
-        percentile: data.PP,
-        percentileCollege: data.MSColComparison,
-        percentilePro: data.MSProComparison,
+        percentile: params.get('mentalSkillsPercentile'),
+        percentileCollege: params.get('mentalSkillsPercentileCollege'),
+        percentilePro: params.get('mentalSkillsPercentilePro'),
       },
       {
         name: 'team_support',
         label: 'Team Support',
-        percentile: data.TP,
-        percentileCollege: data.TSColComparison,
-        percentilePro: data.TSProComparison,
+        percentile: params.get('teamSupportPercentile'),
+        percentileCollege: params.get('teamSupportPercentileCollege'),
+        percentilePro: params.get('teamSupportPercentilePro'),
       },
       {
         name: 'health_habits',
         label: 'Health Habits',
-        percentile: data.PhP,
-        percentileCollege: data.HHColComparison,
-        percentilePro: data.HHProComparison,
+        percentile: params.get('healthHabitsPercentile'),
+        percentileCollege: params.get('healthHabitsPercentileCollege'),
+        percentilePro: params.get('healthHabitsPercentilePro'),
       },
       {
         name: 'self_reflection',
         label: 'Self-Reflection',
-        percentile: data.MP,
-        percentileCollege: data.SRColComparison,
-        percentilePro: data.SRProComparison,
+        percentile: params.get('selfReflectionPercentile'),
+        percentileCollege: params.get('selfReflectionPercentileCollege'),
+        percentilePro: params.get('selfReflectionPercentilePro'),
       },
-    ]
-
-    setSurveyResponse({
-      athleteName,
-      email,
-      recordedDate,
-      level,
-      clusterResults
-    })
-  }
-
-  console.log(surveyResponse)
+    ] as ClusterResult[]
+  };
 
   return (
     <>
-      {!reportOnlyMode&& (
+      {reportOnlyMode === 'false' && (
         <ReportMetadata>
           <p>
-            This report was generated with <b><code>response_id: {responseId}</code></b>.
+            This report was generated with the following data:
           </p>
-          <p>
-            Choose a different <code>response_id</code> to generate the PDF with:
-            <br /><br />
-            <select onChange={(e) => handleSelectResponseId(e)}>
-              <option value='R_ujMsW9296ZXnEHv'>R_ujMsW9296ZXnEHv</option>
-              <option value='R_1inhiUBTksen9N1'>R_1inhiUBTksen9N1</option>
-              <option value='R_27J1nzLgOLFAu06'>R_27J1nzLgOLFAu06</option>
-              <option value='R_3rUutVmu15Ey2v9'>R_3rUutVmu15Ey2v9</option>
-            </select>
-          </p>
+          <ul>
+            <li>Athlete Name: {surveyResponse.athleteName}</li>
+            <li>Recorded Date: {surveyResponse.recordedDate}</li>
+            <li>Level: {surveyResponse.level}</li>
+            <li>
+              Cluster Results
+              {surveyResponse.clusterResults.map(clusterResult => (
+                <ul>
+                  <li>{clusterResult.label} Percentile: {clusterResult.percentile}</li>
+                  <li>{clusterResult.label} College Percentile: {clusterResult.percentileCollege}</li>
+                  <li>{clusterResult.label} Pro Percentile: {clusterResult.percentilePro}</li>
+                </ul>
+              ))}
+            </li>
+          </ul>
         </ReportMetadata>
       )}
       {surveyResponse && (
@@ -117,7 +90,10 @@ function App() {
             <CoverPage />
           </ReportPage>
           <ReportPage>
-            <TableOfContentsPage />
+            <MindsetAssessmentPage />
+          </ReportPage>
+          <ReportPage>
+            <FiveClustersPage />
           </ReportPage>
           <ReportPage>
             <SummaryPage
@@ -127,16 +103,20 @@ function App() {
           {clusters.map((cluster, index) => (
             <ReportPage
               key={`cluster-summary-page-${index}`}
-              theme='dark'
             >
               <ClusterSummaryPage
                 clusterName={cluster.name}
                 clusterLabel={cluster.label}
                 clusterDescription={cluster.description}
+                clusterFunFact={cluster.funFact}
                 surveyResponse={surveyResponse}
+                pageNum={index+4}
               />
             </ReportPage>
           ))}
+          <ReportPage>
+            <WrapUpPage />
+          </ReportPage>
         </>
       )}
     </>
@@ -158,7 +138,7 @@ const ReportPage = styled.div<{ theme: string }>`
   width: 816px;
   display: flex;
   flex-direction: column;
-  background-color: ${props => props.theme === 'dark' ? 'rgb(29, 30, 42)' : '#FFF'}
+  background-color: #FFF;
 `;
 
 export default App;

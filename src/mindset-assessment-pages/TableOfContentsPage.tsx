@@ -5,8 +5,7 @@ import { PageHeader } from '../components-shared/PageHeader';
 import { PageHeaderTitle } from '../components-shared/PageHeaderTitle';
 import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
 import { PageHeaderHr } from '../components-shared/PageHeaderHr';
-import { PageFooter } from '../components-shared/PageFooter';
-import logoImage from '../images/logo.png'
+import PageFooter from '../components-shared/PageFooter';
 
 const TableOfContentsPage = () => {
     return (
@@ -128,9 +127,7 @@ const TableOfContentsPage = () => {
             </TableOfContentsPageNum>
           </li>
         </TableOfContents>
-        <PageFooter>
-          <img src={logoImage} />
-        </PageFooter>
+        <PageFooter pageNum={1} />
       </PageWrapper>
     )
   }
