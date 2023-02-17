@@ -85,13 +85,8 @@ interface PercentileVisualizationProps {
 }
 
 const PercentileVisualization = ({ percentile }: PercentileVisualizationProps) => {
-  console.log(percentile)
   return (
-    <PercentileVisualizationWrapper>
-      {[...Array(5)].map(() => (
-        <PercentileBar />
-      ))}
-    </PercentileVisualizationWrapper>
+    <img src={require(`../images/percentile_bars/${percentile}.png`)} />
   )
 }
 
@@ -120,28 +115,27 @@ const ClusterResults = styled.div`
 const ClusterResult = styled.table`
   border-spacing: ${BASE}px;
   margin-left: ${BASE * 6}px;
-`;
+  margin-bottom: ${BASE}px;
 
-const PercentileVisualizationWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  column-gap: ${BASE}px;
-`;
+  > tr {
+    > td {
+      font-size: 14px;
 
-const PercentileBar = styled.div`
-  width: 50px;
-  height: 10px;
-  background-color: rgb(239, 239, 239);
+      > img {
+        width: 380px;
+      }
+    }
+  }
 `;
 
 const PercentileNumber = styled.td`
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: bold;
 `;
 
 const HowToReadCard = styled.div`
   padding: ${BASE * 2}px;
-  margin-top: ${BASE * 4}px;
+  margin-top: ${BASE * 3}px;
   width: 500px;
   background-color: rgb(227, 227, 227);
   float: right;

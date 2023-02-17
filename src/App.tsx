@@ -60,6 +60,8 @@ function App() {
     ] as ClusterResult[]
   };
 
+  console.log(surveyResponse);
+
   return (
     <>
       {reportOnlyMode === 'false' && (
