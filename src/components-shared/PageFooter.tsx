@@ -6,7 +6,7 @@ const PageFooter = ({ pageNum }: { pageNum: number }) => {
   return (
     <PageFooterWrapper>
       <div>
-        &copy; 2023 Premiere Sport Psychology LLC
+        &copy; 2023 Premier Sport Psychology PLLC
       </div>
       <img src={logoImage} />
       <PageNum>
@@ -20,7 +20,7 @@ const BASE = 8;
 
 const PageFooterWrapper = styled.div`
   position: absolute;
-  bottom: 0px;
+  bottom: ${BASE}px;
   display: flex;
   align-items: center;
   margin-top: ${BASE}px;

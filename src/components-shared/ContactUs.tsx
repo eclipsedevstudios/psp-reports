@@ -7,7 +7,7 @@ import websiteImage from '../images/website.png';
 const ContactUs = () => {
   return (
     <ContactUsWrapper>
-      <p><b>Learn more about sport psychology at Premier</b></p>
+      <p><b>Stay on top of your mental game with Premier</b></p>
       <ContactUsRow>
         <ContactUsItem>
           <img src={phoneImage} />

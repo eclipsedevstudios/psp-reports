@@ -45,7 +45,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
                   <td>
                     <PercentileVisualization percentile={cluster.percentileCollege} />
                   </td>
-                  <PercentileNumber>{cluster.percentile}th</PercentileNumber>
+                  <PercentileNumber>{cluster.percentileCollege}th</PercentileNumber>
                 </tr>
               )}
               {surveyResponse.level === 'collegiate' || surveyResponse.level === 'semi_pro' || surveyResponse.level === 'adult_rec' && (
@@ -54,7 +54,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
                   <td>
                     <PercentileVisualization percentile={cluster.percentilePro} />
                   </td>
-                  <PercentileNumber>{cluster.percentile}th</PercentileNumber>
+                  <PercentileNumber>{cluster.percentilePro}th</PercentileNumber>
                 </tr>
               )}
             </ClusterResult>

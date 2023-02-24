@@ -55,9 +55,10 @@ const BASE = 8;
 
 const WrapUpRow = styled.div`
   display: flex;
-  column-gap: ${BASE * 4}px;
+  column-gap: ${BASE * 2}px;
   margin-top: ${BASE * 4}px;
-  margin-bottom: ${BASE * 4}px;
+  margin-bottom: ${BASE * 2}px;
+  font-size: 15px;
 `;
 
 const AthleteImage = styled.div`

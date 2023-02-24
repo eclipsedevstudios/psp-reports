@@ -92,13 +92,13 @@ const ClusterRow = styled.div`
   flex-direction: row;
   column-gap: ${BASE * 8}px;
   align-items: top;
-
-  > * {
-    flex: 1;
-  }
 `;
 
 const ClusterAnalysis = styled.div`
+  flex-basis: 400px;
+  flex-grow: 0;
+  flex-shrink: 0;
+
   > h1 {
     color: rgb(191, 37, 35);
     font-size: 18px;
