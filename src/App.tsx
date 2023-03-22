@@ -141,6 +141,8 @@ const ReportPage = styled.div<{ theme: string }>`
   display: flex;
   flex-direction: column;
   background-color: #FFF;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
 `;
 
 export default App;
