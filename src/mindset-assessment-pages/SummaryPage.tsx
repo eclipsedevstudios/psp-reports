@@ -23,7 +23,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
           <h1>{surveyResponse.athleteName}</h1>
           <hr />
           <b>Level</b>: {surveyResponse.level}
-          <br /><b>Date</b>: {surveyResponse.recordedDate}
+          <br /><b>Date</b>: {surveyResponse.recordedDate.split('T')[0]}
         </AthleteCard>
       </PageHeader>
       <br /><br />
@@ -48,7 +48,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
                   <PercentileNumber>{cluster.percentileCollege}th</PercentileNumber>
                 </tr>
               )}
-              {surveyResponse.level === AthleteLevel.Collegiate || surveyResponse.level === AthleteLevel.SemiProfessional || surveyResponse.level === AthleteLevel.AdultRecreational && (
+              {(surveyResponse.level === AthleteLevel.Collegiate || surveyResponse.level === AthleteLevel.SemiProfessional || surveyResponse.level === AthleteLevel.AdultRecreational) && (
                 <tr>
                   <td>Compared with pro athletes</td>
                   <td>
