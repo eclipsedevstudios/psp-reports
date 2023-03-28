@@ -5,7 +5,7 @@ import { PageHeader } from '../components-shared/PageHeader';
 import { PageHeaderTitle } from '../components-shared/PageHeaderTitle';
 import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
 import PageFooter from '../components-shared/PageFooter';
-import { SurveyResponse } from '../models/surveyResponse';
+import { SurveyResponse, AthleteLevel } from '../models/surveyResponse';
 
 const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
   return (
@@ -39,7 +39,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
                 </td>
                 <PercentileNumber>{cluster.percentile}th</PercentileNumber>
               </tr>
-              {surveyResponse.level === 'high_school' && (
+              {surveyResponse.level === AthleteLevel.HighSchool && (
                 <tr>
                   <td>Compared with college athletes</td>
                   <td>
@@ -48,7 +48,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
                   <PercentileNumber>{cluster.percentileCollege}th</PercentileNumber>
                 </tr>
               )}
-              {surveyResponse.level === 'collegiate' || surveyResponse.level === 'semi_pro' || surveyResponse.level === 'adult_rec' && (
+              {surveyResponse.level === AthleteLevel.Collegiate || surveyResponse.level === AthleteLevel.SemiProfessional || surveyResponse.level === AthleteLevel.AdultRecreational && (
                 <tr>
                   <td>Compared with pro athletes</td>
                   <td>
