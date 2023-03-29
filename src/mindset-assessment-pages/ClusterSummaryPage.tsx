@@ -31,11 +31,11 @@ const ClusterSummaryPage = ({
 
   const classifyPercentile = (percentile: number) => {
     if (percentile <= 30) {
-      return 'LOW';
+      return 'low';
     } else if (percentile <= 70) {
-      return 'AVERAGE';
+      return 'average';
     } else {
-      return 'HIGH';
+      return 'high';
     }
   }
 
@@ -58,7 +58,7 @@ const ClusterSummaryPage = ({
         <ClusterAnalysis>
           <h1>Understanding your score</h1>
           <p>
-            {interpretation.meaning}
+            Your {clusterLabel} score falls within the {classifyPercentile(percentile)} range ({percentile}th percentile) compared to other athletes at your competition level. {interpretation.meaning}
           </p>
           <p>
             {interpretation.next_steps}
@@ -115,6 +115,7 @@ const ClusterPercentile = styled.div`
   font-family: 'League Gothic';
   font-size: 24px;
   margin-bottom: ${BASE * 10}px;
+  text-transform: uppercase;
 
   > img {
     width: 200px;
