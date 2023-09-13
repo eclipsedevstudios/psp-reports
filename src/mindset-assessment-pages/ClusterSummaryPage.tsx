@@ -13,6 +13,7 @@ interface ClusterSummaryPageProps {
   clusterLabel: string;
   clusterDescription: string;
   clusterFunFact: string;
+  clusterRelevantModules: string;
   surveyResponse: SurveyResponse;
   pageNum: number;
 }
@@ -22,21 +23,37 @@ const ClusterSummaryPage = ({
   clusterLabel,
   clusterDescription,
   clusterFunFact,
+  clusterRelevantModules,
   surveyResponse,
   pageNum,
 }: ClusterSummaryPageProps) => {
   const clusterResult = surveyResponse.clusterResults.filter(cluster => cluster.name === clusterName)[0];
   const percentile = parseInt(clusterResult.percentile);
+  const rawScore = clusterResult.rawScore;
   const interpretation = percentileInterpretation.filter(obj => obj.name === clusterName && percentile >= obj.minPercentile && percentile <= obj.maxPercentile)[0];
 
   const classifyPercentile = (percentile: number) => {
-    if (percentile <= 30) {
-      return 'low';
-    } else if (percentile <= 70) {
-      return 'average';
+    if (percentile <= 20) {
+      return 'Growth Opportunity';
+    } else if (percentile <= 40) {
+      return 'Emerging';
+    } else if (percentile <= 60) {
+      return 'Foundational';
+    } else if (percentile <= 80) {
+      return 'Developed';
     } else {
-      return 'high';
+      return 'Advanced';
     }
+  }
+
+  const comparePercentile = (percentile: number, clusterLabel: string) => {
+    if (percentile === 100) {
+      return `Very few athletes at your level received a score as high as yours in ${clusterLabel}.`
+    }
+    if (percentile === 0) {
+      return `Most athletes at your level reported scores higher than yours in ${clusterLabel}.`
+    }
+    return `${100-percentile}% of athletes at your level reported scores higher than yours in ${clusterLabel}.`
   }
 
   return (
@@ -56,19 +73,27 @@ const ClusterSummaryPage = ({
       </ClusterDescription>
       <ClusterRow>
         <ClusterAnalysis>
+          <h1>Your Score: {rawScore} out of 10</h1>
           <h1>Understanding your score</h1>
           <p>
-            Your {clusterLabel} score falls within the {classifyPercentile(percentile)} range ({percentile}th percentile) compared to other athletes at your competition level. {interpretation.meaning}
+            Your {clusterLabel} score falls within the {classifyPercentile(percentile)} range ({percentile}th percentile) compared to other athletes at your competition level. {comparePercentile(percentile, clusterLabel)}
           </p>
           <p>
+            {interpretation.meaning}
+          </p>
+          <h1>Developmental opportunities</h1>
+          <p>
             {interpretation.next_steps}
+          </p>
+          <p>
+            If you want to help develop your {clusterLabel}, check out the {clusterRelevantModules} of our Premier Mindset Program at <a href="https://mindsetprogram.com/">mindsetprogram.com</a>.
           </p>
         </ClusterAnalysis>
         <ClusterRight>
           <ClusterPercentile>
             <img src={require(`../images/percentiles/${percentile}.png`)} />
             <br />
-            {classifyPercentile(percentile)} RANGE
+            {classifyPercentile(percentile)}
           </ClusterPercentile>
           <DidYouKnow>
             {clusterFunFact}

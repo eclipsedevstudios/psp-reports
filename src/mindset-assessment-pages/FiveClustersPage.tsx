@@ -38,7 +38,7 @@ const FiveClustersPage = () => {
       <ClusterExplanationWrapper>
         <img src={growthMindsetImage} />
         <div>
-          <ClusterExplanationTitle>Growth Mindset</ClusterExplanationTitle>
+          <ClusterExplanationTitle>Resilient Mindset</ClusterExplanationTitle>
           <ClusterExplanationDescription>
             An athlete's ability to be kind and understanding toward oneself
             when faced with difficulties, and to embrace challenges.
@@ -58,7 +58,7 @@ const FiveClustersPage = () => {
       <ClusterExplanationWrapper>
         <img src={teamSupportImage} />
         <div>
-          <ClusterExplanationTitle>Team Support</ClusterExplanationTitle>
+          <ClusterExplanationTitle>Team Environment</ClusterExplanationTitle>
           <ClusterExplanationDescription>
             The strength of relationships with teammates and coaches, as
             well as whether the athlete feels they have a voice on the team.
@@ -78,7 +78,7 @@ const FiveClustersPage = () => {
       <ClusterExplanationWrapper>
         <img src={selfReflectionImage} />
         <div>
-          <ClusterExplanationTitle>Self Reflection</ClusterExplanationTitle>
+          <ClusterExplanationTitle>Accountability</ClusterExplanationTitle>
           <ClusterExplanationDescription>
             The use of self-reflection, mental health resources, and
             openness to speaking about mental and physical health with

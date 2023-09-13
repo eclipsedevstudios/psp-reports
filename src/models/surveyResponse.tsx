@@ -11,6 +11,7 @@ export interface ClusterResult {
    percentile: string;
    percentileCollege: string;
    percentilePro: string;
+   rawScore: string;
 }
 
 // NB: These strings come directly from the Qualtrics survey

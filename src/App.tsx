@@ -28,6 +28,7 @@ function App() {
         percentile: params.get('growthMindsetPercentile'),
         percentileCollege: params.get('growthMindsetPercentileCollege'),
         percentilePro: params.get('growthMindsetPercentilePro'),
+        rawScore: params.get('growthMindsetScore'),
       },
       {
         name: 'mental_skills',
@@ -35,6 +36,7 @@ function App() {
         percentile: params.get('mentalSkillsPercentile'),
         percentileCollege: params.get('mentalSkillsPercentileCollege'),
         percentilePro: params.get('mentalSkillsPercentilePro'),
+        rawScore: params.get('mentalSkillsScore'),
       },
       {
         name: 'team_support',
@@ -42,6 +44,7 @@ function App() {
         percentile: params.get('teamSupportPercentile'),
         percentileCollege: params.get('teamSupportPercentileCollege'),
         percentilePro: params.get('teamSupportPercentilePro'),
+        rawScore: params.get('teamSupportScore'),
       },
       {
         name: 'health_habits',
@@ -49,6 +52,7 @@ function App() {
         percentile: params.get('healthHabitsPercentile'),
         percentileCollege: params.get('healthHabitsPercentileCollege'),
         percentilePro: params.get('healthHabitsPercentilePro'),
+        rawScore: params.get('healthHabitsScore'),
       },
       {
         name: 'self_reflection',
@@ -56,6 +60,7 @@ function App() {
         percentile: params.get('selfReflectionPercentile'),
         percentileCollege: params.get('selfReflectionPercentileCollege'),
         percentilePro: params.get('selfReflectionPercentilePro'),
+        rawScore: params.get('selfReflectionScore'),
       },
     ] as ClusterResult[]
   };
@@ -111,6 +116,7 @@ function App() {
                 clusterLabel={cluster.label}
                 clusterDescription={cluster.description}
                 clusterFunFact={cluster.funFact}
+                clusterRelevantModules={cluster.relevantModules}
                 surveyResponse={surveyResponse}
                 pageNum={index+4}
               />
