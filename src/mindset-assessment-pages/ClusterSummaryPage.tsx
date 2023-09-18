@@ -130,6 +130,10 @@ const ClusterAnalysis = styled.div`
     text-transform: uppercase;
     font-weight: bold;
   }
+
+  > p {
+    font-size: 15px;
+  }
 `;
 
 const ClusterRight = styled.div`
