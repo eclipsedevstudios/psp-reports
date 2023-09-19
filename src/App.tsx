@@ -24,7 +24,7 @@ function App() {
     clusterResults: [
       {
         name: 'growth_mindset',
-        label: 'Growth Mindset',
+        label: 'Resilient Mindset',
         percentile: params.get('growthMindsetPercentile'),
         percentileCollege: params.get('growthMindsetPercentileCollege'),
         percentilePro: params.get('growthMindsetPercentilePro'),
@@ -40,7 +40,7 @@ function App() {
       },
       {
         name: 'team_support',
-        label: 'Team Support',
+        label: 'Team Environment',
         percentile: params.get('teamSupportPercentile'),
         percentileCollege: params.get('teamSupportPercentileCollege'),
         percentilePro: params.get('teamSupportPercentilePro'),
@@ -56,7 +56,7 @@ function App() {
       },
       {
         name: 'self_reflection',
-        label: 'Self-Reflection',
+        label: 'Accountability',
         percentile: params.get('selfReflectionPercentile'),
         percentileCollege: params.get('selfReflectionPercentileCollege'),
         percentilePro: params.get('selfReflectionPercentilePro'),

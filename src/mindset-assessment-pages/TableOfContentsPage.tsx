@@ -50,7 +50,7 @@ const TableOfContentsPage = () => {
           </li>
           <li>
             <TableOfContentsItem>
-              Growth Mindset
+              Resilient Mindset
             </TableOfContentsItem>
             <TableOfContentsPageNum>
               5
