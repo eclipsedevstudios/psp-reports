@@ -78,11 +78,9 @@ const FiveClustersPage = () => {
       <ClusterExplanationWrapper>
         <img src={selfReflectionImage} />
         <div>
-          <ClusterExplanationTitle>Accountability</ClusterExplanationTitle>
+          <ClusterExplanationTitle>Wellness Accountability</ClusterExplanationTitle>
           <ClusterExplanationDescription>
-            The use of self-reflection, mental health resources, and
-            openness to speaking about mental and physical health with
-            others.
+            Being proactively accountable to using mindset tools and resources to keep your mind optimal and resilient.
           </ClusterExplanationDescription>
         </div>
       </ClusterExplanationWrapper>

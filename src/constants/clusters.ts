@@ -29,8 +29,8 @@ export const clusters = [
   },
   {
     name: 'self_reflection',
-    label: 'Accountability',
-    description: 'This area of wellness and performance addresses the frequency of accountability, use of mental health resources, and openness to speaking about mental and physical health with others.',
+    label: 'Wellness Accountability',
+    description: 'This area of wellness and performance reflects being proactively accountable to using mindset tools and resources to keep your mind optimal and resilient.',
     funFact: 'Athletes who are better at holding themselves accountable also tend to feel a stronger sense of purpose. A strong correlation was found between athletes’ accountability and their self-compassion and purpose scores.',
     relevantModules: 'Emotional Regulation and Motivation modules',
   },

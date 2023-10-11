@@ -56,7 +56,7 @@ function App() {
       },
       {
         name: 'self_reflection',
-        label: 'Accountability',
+        label: 'Wellness Accountability',
         percentile: params.get('selfReflectionPercentile'),
         percentileCollege: params.get('selfReflectionPercentileCollege'),
         percentilePro: params.get('selfReflectionPercentilePro'),
