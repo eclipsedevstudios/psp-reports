@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
+import { Language } from '../types';
 import coverImage from '../images/cover.png';
 import coverBackgroundGradient from '../images/cover-background-gradient.jpg';
 
-const CoverPage = () => {
+const CoverPage = ({ language }: { language: Language }) => {
   return (
     <>
       <CoverImage>
@@ -11,8 +13,7 @@ const CoverPage = () => {
       </CoverImage>
       <CoverText>
         <CoverTextHeader>
-          Assessment Report
-          <br />& Training Guide
+          {coverTextHeaderStrings[language]}
         </CoverTextHeader>
         <CoverTextSubheader>
           Premier Sport Psychology,
@@ -21,6 +22,17 @@ const CoverPage = () => {
       </CoverText>
     </>
   )
+}
+
+const coverTextHeaderStrings: { [key in Language]: ReactNode } = {
+  [Language.English]: <>
+    Assessment Report
+    <br />& Training Guide
+  </>,
+  [Language.Spanish]: <>
+    Informe de Evaluación
+    <br />y Guía de Formación
+  </>,
 }
 
 const BASE = 8;

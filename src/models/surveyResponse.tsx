@@ -1,8 +1,11 @@
+import { Language } from "../types";
+
 export interface SurveyResponse {
    athleteName: string;
    recordedDate: string;
    level: string;
    clusterResults: ClusterResult[];
+   language: Language;
 }
 
 export interface ClusterResult {

@@ -8,6 +8,7 @@ import ClusterSummaryPage from './mindset-assessment-pages/ClusterSummaryPage';
 import WrapUpPage from './mindset-assessment-pages/WrapUpPage';
 import { ClusterResult, SurveyResponse } from './models/surveyResponse';
 import { clusters } from './constants/clusters';
+import { Language } from './types';
 // import { sampleData } from './constants/sampleData';
 import './App.css';
 
@@ -62,7 +63,8 @@ function App() {
         percentilePro: params.get('selfReflectionPercentilePro'),
         rawScore: params.get('selfReflectionScore'),
       },
-    ] as ClusterResult[]
+    ] as ClusterResult[],
+    language: params.get('language') as Language || Language.English,
   };
 
   console.log(surveyResponse);
@@ -78,6 +80,7 @@ function App() {
             <li>Athlete Name: {surveyResponse.athleteName}</li>
             <li>Recorded Date: {surveyResponse.recordedDate}</li>
             <li>Level: {surveyResponse.level}</li>
+            <li>Language: {surveyResponse.language}</li>
             <li>
               Cluster Results
               {surveyResponse.clusterResults.map(clusterResult => (
@@ -94,13 +97,19 @@ function App() {
       {surveyResponse && (
         <>
           <ReportPage>
-            <CoverPage />
+            <CoverPage
+              language={surveyResponse.language}
+            />
           </ReportPage>
           <ReportPage>
-            <MindsetAssessmentPage />
+            <MindsetAssessmentPage
+              language={surveyResponse.language}
+            />
           </ReportPage>
           <ReportPage>
-            <FiveClustersPage />
+            <FiveClustersPage
+              language={surveyResponse.language}
+            />
           </ReportPage>
           <ReportPage>
             <SummaryPage
@@ -123,7 +132,7 @@ function App() {
             </ReportPage>
           ))}
           <ReportPage>
-            <WrapUpPage />
+            <WrapUpPage language={surveyResponse.language} />
           </ReportPage>
         </>
       )}

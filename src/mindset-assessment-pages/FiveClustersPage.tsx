@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { PageWrapper } from '../components-shared/PageWrapper';
@@ -6,6 +7,7 @@ import { PageHeaderTitle } from '../components-shared/PageHeaderTitle';
 import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
 import { PageHeaderHr } from '../components-shared/PageHeaderHr';
 import PageFooter from '../components-shared/PageFooter';
+import { Language } from '../types';
 
 import growthMindsetImage from '../images/cluster_icons/growth_mindset.png';
 import mentalSkillsImage from '../images/cluster_icons/mental_skills.png';
@@ -13,27 +15,19 @@ import teamSupportImage from '../images/cluster_icons/team_support.png';
 import healthHabitsImage from '../images/cluster_icons/health_habits.png';
 import selfReflectionImage from '../images/cluster_icons/self_reflection.png';
 
-const FiveClustersPage = () => {
+const FiveClustersPage = ({ language }: { language: Language }) => {
   return (
     <PageWrapper>
       <PageHeader>
         <div>
-          <PageHeaderSubtitle>
-            The
-          </PageHeaderSubtitle>
-          <PageHeaderTitle>
-            Five Clusters
-          </PageHeaderTitle>
+          {pageHeaderStrings[language]}
         </div>
         <PageHeaderHr>
           <hr />
         </PageHeaderHr>
       </PageHeader>
       <IntroParagraph>
-        The clusters below include the thoughts, feelings, and behaviors that contribute to optimal
-        performance and mental health in athletes. All clusters have been identified as "very" or
-        "extremely" important by our pool of subject matter experts to positive performance
-        outcomes and overall mental wellness.
+        {introParagraphStrings[language]}
       </IntroParagraph>
       <ClusterExplanationWrapper>
         <img src={growthMindsetImage} />
@@ -87,6 +81,40 @@ const FiveClustersPage = () => {
       <PageFooter pageNum={2} />
     </PageWrapper>
   )
+}
+
+const pageHeaderStrings: { [key in Language]: ReactNode } = {
+  [Language.English]: <>
+    <PageHeaderSubtitle>
+      The
+    </PageHeaderSubtitle>
+    <PageHeaderTitle>
+      Five Clusters
+    </PageHeaderTitle>
+  </>,
+  [Language.Spanish]: <>
+    <PageHeaderSubtitle>
+      El
+    </PageHeaderSubtitle>
+    <PageHeaderTitle>
+      Cinco Groupos
+    </PageHeaderTitle>
+  </>,
+}
+
+const introParagraphStrings: { [key in Language]: ReactNode } = {
+  [Language.English]: <>
+    The clusters below include the thoughts, feelings, and behaviors that contribute to optimal
+    performance and mental health in athletes. All clusters have been identified as "very" or
+    "extremely" important by our pool of subject matter experts to positive performance
+    outcomes and overall mental wellness.
+  </>,
+  [Language.Spanish]: <>
+    Los grupos a continuación incluyen los pensamientos, sentimientos y comportamientos que
+    contribuyen al rendimiento óptimo y la salud mental de los atletas. Nuestro grupo de expertos en la
+    materia ha identificado todos los grupos como "muy" o "extremadamente" importantes para
+    obtener resultados de rendimiento positivos y bienestar mental general.
+  </>,
 }
 
 const BASE = 8;
