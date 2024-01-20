@@ -105,7 +105,7 @@ const BASE = 8;
 const WrapUpRow = styled.div`
   display: flex;
   column-gap: ${BASE * 2}px;
-  margin-top: ${BASE * 4}px;
+  margin-top: ${BASE}px;
   margin-bottom: ${BASE * 2}px;
   font-size: 14px;
 `;

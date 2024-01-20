@@ -8,7 +8,7 @@ import ClusterSummaryPage from './mindset-assessment-pages/ClusterSummaryPage';
 import WrapUpPage from './mindset-assessment-pages/WrapUpPage';
 import { ClusterResult, SurveyResponse } from './models/surveyResponse';
 import { clusters } from './constants/clusters';
-import { Language } from './types';
+import { Cluster, Language } from './types';
 // import { sampleData } from './constants/sampleData';
 import './App.css';
 
@@ -24,40 +24,35 @@ function App() {
     level: params.get('level') || '',
     clusterResults: [
       {
-        name: 'growth_mindset',
-        label: 'Resilient Mindset',
+        name: Cluster.GrowthMindset,
         percentile: params.get('growthMindsetPercentile'),
         percentileCollege: params.get('growthMindsetPercentileCollege'),
         percentilePro: params.get('growthMindsetPercentilePro'),
         rawScore: params.get('growthMindsetScore'),
       },
       {
-        name: 'mental_skills',
-        label: 'Mental Skills',
+        name: Cluster.MentalSkills,
         percentile: params.get('mentalSkillsPercentile'),
         percentileCollege: params.get('mentalSkillsPercentileCollege'),
         percentilePro: params.get('mentalSkillsPercentilePro'),
         rawScore: params.get('mentalSkillsScore'),
       },
       {
-        name: 'team_support',
-        label: 'Team Environment',
+        name: Cluster.TeamSupport,
         percentile: params.get('teamSupportPercentile'),
         percentileCollege: params.get('teamSupportPercentileCollege'),
         percentilePro: params.get('teamSupportPercentilePro'),
         rawScore: params.get('teamSupportScore'),
       },
       {
-        name: 'health_habits',
-        label: 'Health Habits',
+        name: Cluster.HealthHabits,
         percentile: params.get('healthHabitsPercentile'),
         percentileCollege: params.get('healthHabitsPercentileCollege'),
         percentilePro: params.get('healthHabitsPercentilePro'),
         rawScore: params.get('healthHabitsScore'),
       },
       {
-        name: 'self_reflection',
-        label: 'Wellness Accountability',
+        name: Cluster.SelfReflection,
         percentile: params.get('selfReflectionPercentile'),
         percentileCollege: params.get('selfReflectionPercentileCollege'),
         percentilePro: params.get('selfReflectionPercentilePro'),
@@ -116,7 +111,7 @@ function App() {
               surveyResponse={surveyResponse}
             />
           </ReportPage>
-          {clusters.map((cluster, index) => (
+          {clusters.filter(c => c.language === surveyResponse.language).map((cluster, index) => (
             <ReportPage
               key={`cluster-summary-page-${index}`}
             >

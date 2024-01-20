@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { PageWrapper } from '../components-shared/PageWrapper';
@@ -7,6 +8,7 @@ import { PageHeaderHr } from '../components-shared/PageHeaderHr';
 import PageFooter from '../components-shared/PageFooter';
 import { SurveyResponse } from '../models/surveyResponse';
 import { percentileInterpretation } from '../constants/percentile-interpretation';
+import { Language } from '../types';
 
 interface ClusterSummaryPageProps {
   clusterName: string;
@@ -27,6 +29,7 @@ const ClusterSummaryPage = ({
   surveyResponse,
   pageNum,
 }: ClusterSummaryPageProps) => {
+  const language = surveyResponse.language;
   const clusterResult = surveyResponse.clusterResults.filter(cluster => cluster.name === clusterName)[0];
   const percentile = parseInt(clusterResult.percentile);
   const rawScore = clusterResult.rawScore;
@@ -73,15 +76,19 @@ const ClusterSummaryPage = ({
       </ClusterDescription>
       <ClusterRow>
         <ClusterAnalysis>
-          <h1>Your Score: {rawScore} out of 10</h1>
-          <h1>Understanding your score</h1>
+          <h1>{scoreLabelString[language]}: {rawScore} {scoreOutOfString[language]}</h1>
+          <h1>
+            {understandingYourScoreString[language]}
+          </h1>
           <p>
             Your {clusterLabel} score falls within the {classifyPercentile(percentile)} range ({percentile}th percentile) compared to other athletes at your competition level. {comparePercentile(percentile, clusterLabel)}
           </p>
           <p>
             {interpretation.meaning}
           </p>
-          <h1>Developmental opportunities</h1>
+          <h1>
+            {developmentalOpportunitiesString[language]}
+          </h1>
           <p>
             {interpretation.next_steps}
           </p>
@@ -95,7 +102,7 @@ const ClusterSummaryPage = ({
             <br />
             {classifyPercentile(percentile)}
           </ClusterPercentile>
-          <DidYouKnow>
+          <DidYouKnow language={language}>
             {clusterFunFact}
           </DidYouKnow>
         </ClusterRight>
@@ -104,6 +111,26 @@ const ClusterSummaryPage = ({
     </PageWrapper>
   )
 };
+
+const scoreLabelString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'Your Score',
+  [Language.Spanish]: 'SU PUNTUACIÓN',
+}
+
+const scoreOutOfString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'out of 10',
+  [Language.Spanish]: 'de 10',
+}
+
+const understandingYourScoreString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'Understanding Your Score',
+  [Language.Spanish]: 'ENTENDIENDO SU PUNTUACIÓN',
+}
+
+const developmentalOpportunitiesString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'Developmental Opportunities',
+  [Language.Spanish]: 'OPORTUNIDADES DE DESARROLLO',
+}
 
 const BASE = 8;
 
@@ -151,7 +178,7 @@ const ClusterPercentile = styled.div`
   }
 `;
 
-const DidYouKnow = styled.div`
+const DidYouKnow = styled.div<{ language: Language }>`
   border: 2px solid rgb(191, 37, 35);
   border-radius: ${BASE}px;
   background-color: rgb(229, 229, 229);
@@ -161,7 +188,7 @@ const DidYouKnow = styled.div`
   position: relative;
 
   &:before {
-    content: "Did You Know?";
+    content: ${({ language }) => language === Language.Spanish ? '"¿SABÍAS?"' : '"Did You Know?"'};
     text-transform: uppercase;
     position: absolute;
     top: ${BASE * -2}px;

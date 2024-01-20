@@ -7,7 +7,8 @@ import { PageHeaderTitle } from '../components-shared/PageHeaderTitle';
 import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
 import { PageHeaderHr } from '../components-shared/PageHeaderHr';
 import PageFooter from '../components-shared/PageFooter';
-import { Language } from '../types';
+import { Cluster, Language } from '../types';
+import { clusters } from '../constants/clusters';
 
 import growthMindsetImage from '../images/cluster_icons/growth_mindset.png';
 import mentalSkillsImage from '../images/cluster_icons/mental_skills.png';
@@ -16,6 +17,12 @@ import healthHabitsImage from '../images/cluster_icons/health_habits.png';
 import selfReflectionImage from '../images/cluster_icons/self_reflection.png';
 
 const FiveClustersPage = ({ language }: { language: Language }) => {
+  const growthMindset = clusters.filter(cluster => cluster.name === Cluster.GrowthMindset && cluster.language === language)[0];
+  const mentalSkills = clusters.filter(cluster => cluster.name === Cluster.MentalSkills && cluster.language === language)[0];
+  const teamSupport = clusters.filter(cluster => cluster.name === Cluster.TeamSupport && cluster.language === language)[0];
+  const healthHabits = clusters.filter(cluster => cluster.name === Cluster.HealthHabits && cluster.language === language)[0];
+  const selfReflection = clusters.filter(cluster => cluster.name === Cluster.SelfReflection && cluster.language === language)[0];
+
   return (
     <PageWrapper>
       <PageHeader>
@@ -32,19 +39,21 @@ const FiveClustersPage = ({ language }: { language: Language }) => {
       <ClusterExplanationWrapper>
         <img src={growthMindsetImage} />
         <div>
-          <ClusterExplanationTitle>Resilient Mindset</ClusterExplanationTitle>
+          <ClusterExplanationTitle>
+            {growthMindset.label}
+          </ClusterExplanationTitle>
           <ClusterExplanationDescription>
-            An athlete's ability to be kind and understanding toward oneself
-            when faced with difficulties, and to embrace challenges.
+            {growthMindset.summaryPageDescription}
           </ClusterExplanationDescription>
         </div>
       </ClusterExplanationWrapper>
       <ClusterExplanationWrapper>
         <div>
-          <ClusterExplanationTitle>Mental Skills</ClusterExplanationTitle>
+          <ClusterExplanationTitle>
+            {mentalSkills.label}
+          </ClusterExplanationTitle>
           <ClusterExplanationDescription>
-            Skills such as goal setting, mental preparation, and the use of
-            mindfulness, imagery, and present-moment focus.
+            {mentalSkills.summaryPageDescription}
           </ClusterExplanationDescription>
         </div>
         <img src={mentalSkillsImage} />
@@ -52,19 +61,21 @@ const FiveClustersPage = ({ language }: { language: Language }) => {
       <ClusterExplanationWrapper>
         <img src={teamSupportImage} />
         <div>
-          <ClusterExplanationTitle>Team Environment</ClusterExplanationTitle>
+          <ClusterExplanationTitle>
+            {teamSupport.label}
+          </ClusterExplanationTitle>
           <ClusterExplanationDescription>
-            The strength of relationships with teammates and coaches, as
-            well as whether the athlete feels they have a voice on the team.
+            {teamSupport.summaryPageDescription}
           </ClusterExplanationDescription>
         </div>
       </ClusterExplanationWrapper>
       <ClusterExplanationWrapper>
         <div>
-          <ClusterExplanationTitle>Health Habits</ClusterExplanationTitle>
+          <ClusterExplanationTitle>
+            {healthHabits.label}
+          </ClusterExplanationTitle>
           <ClusterExplanationDescription>
-            Getting high quality sleep and nutrition, following injury
-            prevention guidelines, and getting ample rest & recovery.
+            {healthHabits.summaryPageDescription}
           </ClusterExplanationDescription>
         </div>
         <img src={healthHabitsImage} />
@@ -72,9 +83,11 @@ const FiveClustersPage = ({ language }: { language: Language }) => {
       <ClusterExplanationWrapper>
         <img src={selfReflectionImage} />
         <div>
-          <ClusterExplanationTitle>Wellness Accountability</ClusterExplanationTitle>
+          <ClusterExplanationTitle>
+            {selfReflection.label}
+          </ClusterExplanationTitle>
           <ClusterExplanationDescription>
-            Being proactively accountable to using mindset tools and resources to keep your mind optimal and resilient.
+            {selfReflection.summaryPageDescription}
           </ClusterExplanationDescription>
         </div>
       </ClusterExplanationWrapper>

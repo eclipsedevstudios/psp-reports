@@ -159,7 +159,7 @@ const MindsetDescription = styled('div')`
   flex-direction: row;
   column-gap: ${BASE * 8}px;
   margin-top: ${BASE * 8}px;
-  margin-bottom: ${BASE * 10}px;
+  margin-bottom: ${BASE * 6}px;
   align-items: center;
 `;
 
