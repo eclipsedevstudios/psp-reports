@@ -25,12 +25,12 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: SurveyResponse}) => {
         </AthleteCard>
       </PageHeader>
       <ClusterResults>
-        {surveyResponse.clusterResults.map((cluster, index) => (
+        {surveyResponse.clusterResults.map((cluster) => (
           <>
             <h1>
               {clusters.filter(c => c.name === cluster.name && c.language === language)[0].label}
             </h1>
-            <ClusterResult key={`cluster-results-${index}`}>
+            <ClusterResult>
               <tr>
                 <td>
                   {comparedWithPeersString[language]}

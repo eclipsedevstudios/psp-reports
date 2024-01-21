@@ -107,7 +107,7 @@ const WrapUpRow = styled.div`
   column-gap: ${BASE * 2}px;
   margin-top: ${BASE}px;
   margin-bottom: ${BASE * 2}px;
-  font-size: 14px;
+  font-size: 13px;
 `;
 
 const AthleteImage = styled.div`

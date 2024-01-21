@@ -53,7 +53,7 @@ export const clusters = [
     summaryPageDescription: 'La capacidad de un atleta de ser amable y comprensivo consigo mismo cuando se enfrenta a dificultades y de aceptar los desafíos.',
     description: 'Una mentalidad resiliente es la capacidad de un atleta para aceptar desafíos y ser compasivo con uno mismo cuando enfrenta dificultades.',
     funFact: 'En una muestra de 409 atletas, las puntuaciones de Mentalidad Resiliente fueron el mayor predictor del manejo del estrés (en comparación con los otros cuatro grupos de Mentalidad). A medida que aumentaron las puntuaciones de mentalidad resiliente, también aumentaron las puntuaciones de manejo del estrés.',
-    relevantModules: 'Focus and Confidence modules',
+    relevantModules: 'los módulos de enfoque y confianza',
   },
   {
     name: Cluster.MentalSkills,
@@ -62,7 +62,7 @@ export const clusters = [
     summaryPageDescription: 'Habilidades como el establecimiento de objetivos, la preparación mental y el uso de la atención plena, las imágenes y la concentración en el momento presente.',
     description: 'Habilidades como el establecimiento de objetivos, la preparación mental y el uso de la atención plena, las imágenes y la concentración en el momento presente.',
     funFact: 'Los atletas con habilidades mentales más fuertes tienden a poseer mayores habilidades de atención plena. Existe una fuerte correlación positiva entre las puntuaciones de habilidades mentales y conciencia plena de los atletas.',
-    relevantModules: 'Imagery and Mindfulness modules',
+    relevantModules: 'los módulos de Imágenes y Atención Plena',
   },
   {
     name: Cluster.TeamSupport,
@@ -71,7 +71,7 @@ export const clusters = [
     summaryPageDescription: 'La solidez de las relaciones con los compañeros de equipo y los entrenadores, así como si el atleta siente que tiene voz en el equipo.',
     description: 'La solidez de las relaciones con los compañeros de equipo y los entrenadores, así como si el atleta siente que tiene voz en el equipo.',
     funFact: 'Es probable que los atletas con puntuaciones más altas en el ambiente de equipo reporten niveles significativamente más bajos de malestar psicológico y agotamiento en el deporte.',
-    relevantModules: 'Confidence module',
+    relevantModules: 'el módulo Confianza',
   },
   {
     name: Cluster.HealthHabits,
@@ -80,7 +80,7 @@ export const clusters = [
     summaryPageDescription: 'Dormir y nutrirse de alta calidad, seguir las pautas de prevención de lesiones y descansar y recuperarse lo suficiente.',
     description: 'Dormir y nutrirse de alta calidad, seguir las pautas de prevención de lesiones y descansar y recuperarse lo suficiente.',
     funFact: 'Los deportistas que tienen mejores hábitos de salud suelen tener menos cansancio físico y emocional. Se encontró una fuerte correlación entre los hábitos de salud de los atletas y sus puntuaciones de agotamiento físico y emocional.',
-    relevantModules: 'Mindfulness module',
+    relevantModules: 'el módulo Mindfulness',
   },
   {
     name: Cluster.SelfReflection,
@@ -89,6 +89,6 @@ export const clusters = [
     summaryPageDescription: 'El uso de la autorreflexión, los recursos de salud mental y la apertura para hablar sobre la salud física y mental con los demás.',
     description: 'El uso de la autorreflexión, los recursos de salud mental y la apertura para hablar sobre la salud física y mental con los demás.',
     funFact: 'Los atletas que son mejores a la hora de responsabilizarse también tienden a tener un sentido de propósito más fuerte. Se encontró una fuerte correlación entre la responsabilidad de los atletas y sus puntuaciones de autocompasión y propósito.',
-    relevantModules: 'Emotional Regulation and Motivation modules',
+    relevantModules: 'los módulos de regulación emocional y motivación',
   },
 ];
