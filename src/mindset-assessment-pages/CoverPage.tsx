@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 import { Language } from '../types';
 import coverImage from '../images/cover.png';
+import coverImageSpanish from '../images/cover_es.png';
 import coverBackgroundGradient from '../images/cover-background-gradient.jpg';
 
 const CoverPage = ({ language }: { language: Language }) => {
   return (
     <>
       <CoverImage>
-        <img src={coverImage} />
+        <img src={language === Language.Spanish ? coverImageSpanish : coverImage} />
       </CoverImage>
       <CoverText>
         <CoverTextHeader>
