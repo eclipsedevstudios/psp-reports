@@ -87,8 +87,8 @@ const mindsetDescriptionStrings: { [key in Language]: ReactNode } = {
       La información incluida en este informe
       está diseñada para brindarle
       conocimientos e información importantes
-      necesarios para 1) aumentar el
-      conocimiento y la concientización; y 2)
+      necesarios para 1) aumentar el conocimiento
+      y la conciencia; y 2)
       lleva tu juego mental al siguiente nivel. En
       las páginas siguientes, aprenderá cómo
       obtuvo su puntuación en cada área.
@@ -97,9 +97,8 @@ const mindsetDescriptionStrings: { [key in Language]: ReactNode } = {
       en estas áreas.
     </p>
     <p>
-      Al revisar sus resultados, le animamos
-      que mires a través de ellos con la vista
-      abierta mente. Al comprender sus
+      Al revisar sus resultados, le recomendamos
+      que mires a través de ellos con la mente abierta. Al comprender sus
       fortalezas y áreas de crecimiento, puede
       comenzar a priorizar tu entrenamiento
       mental. Tal como lo necesitan los atletas
@@ -146,7 +145,7 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
       boxeo, curling, ciclismo, fútbol, golf,
       gimnasia, hockey, lacrosse, artes
       marciales mixtas, correr, remo,
-      fútbol, softbol, natación, triatlón,
+      fútbol americano, softbol, natación, triatlón,
       ultimate frisbee, voleibol, waterpolo.
       y levantamiento de pesas.
     </p>
