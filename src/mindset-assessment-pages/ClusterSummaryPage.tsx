@@ -177,8 +177,8 @@ const developmentalOpportunitiesHeaderString: { [key in Language]: ReactNode } =
 const BASE = 8;
 
 const ClusterDescription = styled.div`
-  margin: ${BASE * 5}px 0px;
-  font-size: 20px;
+  margin: ${BASE * 4}px 0px ${BASE * 2}px 0px;
+  font-size: 18px;
 `;
 
 const ClusterRow = styled.div`
@@ -201,7 +201,7 @@ const ClusterAnalysis = styled.div`
   }
 
   > p {
-    font-size: 15px;
+    font-size: 14px;
   }
 `;
 

@@ -133,7 +133,7 @@ const introParagraphStrings: { [key in Language]: ReactNode } = {
 const BASE = 8;
 
 const IntroParagraph = styled.div`
-  margin: ${BASE*4}px 0px;
+  margin: ${BASE*3}px 0px;
 `;
 
 const ClusterExplanationWrapper = styled.div`
@@ -141,7 +141,7 @@ const ClusterExplanationWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   column-gap: ${BASE*5}px;
-  padding: ${BASE*3}px ${BASE*5}px;
+  padding: ${BASE * 2}px ${BASE*5}px;
   border-radius: ${BASE * 3}px 0px 0px ${BASE * 3}px;
 
   > img {
