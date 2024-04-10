@@ -1,19 +1,34 @@
 import { Language } from "../types";
 
-export interface SurveyResponse {
+export interface AdultSurveyResponse {
    athleteName: string;
    recordedDate: string;
    level: string;
-   clusterResults: ClusterResult[];
+   clusterResults: AdultClusterResult[];
    language: Language;
 }
 
-export interface ClusterResult {
+export interface YouthSurveyResponse {
+   athleteName: string;
+   recordedDate: string;
+   age: string;
+   clusterResults: YouthClusterResult[];
+   language: Language;
+}
+
+export interface AdultClusterResult {
    name: string;
    label: string;
    percentile: string;
    percentileCollege: string;
    percentilePro: string;
+   rawScore: string;
+}
+
+export interface YouthClusterResult {
+   name: string;
+   label: string;
+   percentile: string;
    rawScore: string;
 }
 
