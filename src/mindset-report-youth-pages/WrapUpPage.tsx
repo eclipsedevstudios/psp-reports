@@ -45,16 +45,16 @@ const wrapUpStrings: { [key in Language]: ReactNode } = {
     <p>
       Your journey to peak performance doesn’t stop here. In fact, it’s just the beginning.
       If you’re thrilled with your results, great! Continue to capitalize on your strengths
-      and implement the training tips for each cluster into your daily routine. Want to
+      and implement the training tips for each section into your daily routine. Want to
       improve your results? <b>No athlete (or person) is perfect and the greatest athletes
       of all time didn’t become elite overnight.</b> Begin to implement new habits that are
       showcased in each area of the assessment. Set small, attainable goals; elite-level
-      habits come to fruition by focusing on the little things. Treat your lowest scores as
+      habits develop by focusing on the little things. Treat your lowest scores as
       opportunities to grow. Success is far from linear and acknowledging this will help
       you respond in a healthy way when things don’t go your way.
     </p>
     <p>
-      In addition, if you’re looking to improve your scores, reach out to one of our sport psychology professionals here (<a href="https://premiersportpsychology.com/requestappointment/">premiersportpsychology.com/requestappointment</a>) and check out our Premier Mindset Program (<a href="https://mindsetprogram.com/">mindsetprogram.com</a>) for hands-on activities and guidance for improving in these five areas!
+      In addition, if you’re looking to improve your scores, reach out to one of our sport psychology professionals here (<a href="https://premiersportpsychology.com/requestappointment/">premiersportpsychology.com/requestappointment</a>) and check out our Premier Mindset Program (<a href="https://mindsetprogram.com/">mindsetprogram.com</a>) for hands-on activities and guidance for improving in these four areas!
     </p>
     <p>
       The Mindset Assessment for Youth Athletes is designed to help athletes live

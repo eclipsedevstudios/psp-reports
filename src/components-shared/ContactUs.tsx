@@ -29,8 +29,8 @@ const ContactUs = ({ language }: { language: Language }) => {
 }
 
 const contactUsStrings: { [key in Language]: ReactNode } = {
-  [Language.English]: <p><b>Stay on top of your mental game with Premier</b></p>,
-  [Language.Spanish]: <p><b>Manténgase al tanto de su juego mental con Premier</b></p>,
+  [Language.English]: <p><b>Stay on top of your mental game with Premier Sport Psychology</b></p>,
+  [Language.Spanish]: <p><b>Manténgase al tanto de su juego mental con Premier Sport Psychology</b></p>,
 }
 
 const BASE = 8;

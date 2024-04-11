@@ -72,11 +72,11 @@ const mindsetDescriptionStrings: { [key in Language]: ReactNode } = {
       As you review your results, we encourage
       you to look through them with an open
       mind. By understanding your strengths and
-      growth edges, you can begin to prioritize
+      growth areas, you can begin to prioritize
       your mental training. Just as athletes need
       to direct attention toward their physical
       training, it is important for them to direct
-      attention toward their mental. This process
+      attention toward their mental training. This process
       will enhance your performance routines and
       create greater consistency in your athletic
       performance over time.
@@ -123,7 +123,7 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
       Sports represented in our
       sample include: baseball;
       basketball; boxing; curling;
-      cycling, football; golf;
+      cycling; football; golf;
       gymnastics; hockey; lacrosse;
       mixed martial arts; running;
       rowing; soccer; softball;

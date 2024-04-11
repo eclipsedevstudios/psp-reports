@@ -7,23 +7,23 @@ export const clusters = [
     label: 'Growth Mindset',
     summaryPageDescription: 'An athlete’s ability to celebrate signs of progress throughout the year, feel empowered to try new things, and embrace challenges.',
     description: 'An athlete’s ability to celebrate signs of progress throughout the year, feel empowered to try new things, and embrace challenges.',
-    funFact: 'Athletes who scored higher on Growth Mindset also scored lower on perceived levels of stress.',
+    funFact: 'Athletes who score high on Growth Mindset tend to score low on perceived levels of stress.',
   },
   {
     name: YouthCluster.SelfConfidence,
     language: Language.English,
-    label: 'Self Confidence',
-    summaryPageDescription: 'An athlete’s self-awareness and openness to ask for help when needed This also includes willingness to ask questions, having a healthy way to handle pressure from others, and loving their sport.',
+    label: 'Self-Confidence',
+    summaryPageDescription: 'An athlete’s self-awareness and openness to ask for help when needed. This also includes willingness to ask questions, having a healthy way to handle pressure from others, and loving their sport.',
     description: 'An athlete’s self-awareness and openness to ask for help when needed. This also includes willingness to ask questions, having a healthy way to handle pressure from others, and loving their sport.',
-    funFact: 'Athletes who report higher levels of self-confidence are more likely to report higher levels of meaning and purpose.',
+    funFact: 'Athletes who report higher levels of self-confidence are also likely to report higher levels of meaning and purpose.',
   },
   {
     name: YouthCluster.TeamCulture,
     language: Language.English,
     label: 'Team Culture',
-    summaryPageDescription: 'Feeling valued on a team regardless of performance, playing for a team that focuses on more than wins and losses, and choose clubs that create supportive and positive environments.',
-    description: 'Feeling valued on a team regardless of performance, playing for a team that focuses on more than wins and losses, and choose clubs that create supportive and positive environments.',
-    funFact: 'Athletes who score higher on Team Culture are more likely to report higher levels of life satisfaction.',
+    summaryPageDescription: 'Feeling valued on a team regardless of performance, playing for a team that focuses on more than wins and losses, and choosing clubs that create supportive and positive environments.',
+    description: 'Feeling valued on a team regardless of performance, playing for a team that focuses on more than wins and losses, and choosing clubs that create supportive and positive environments.',
+    funFact: 'Athletes who score higher on Team Culture are also likely to report higher levels of life satisfaction.',
   },
   {
     name: YouthCluster.HealthBehaviors,
@@ -31,7 +31,7 @@ export const clusters = [
     label: 'Health Behaviors',
     summaryPageDescription: 'The athlete’s commitment to maintaining mental and physical health. This category includes sleep, managing social media use, and taking rest days.',
     description: 'The athlete’s commitment to maintaining mental and physical health. This category includes sleep, managing social media use, and taking rest days.',
-    funFact: 'Athletes who have higher scores in the Health Behaviors category also have higher scores on their overall mental and physical health.',
+    funFact: 'Athletes who score high in Health Behaviors tend to also have stronger overall mental and physical health.',
   },
 ]
 
@@ -66,7 +66,7 @@ export const percentileInterpretationYouth = [
     minPercentile: 0,
     maxPercentile: 20,
     meaning: 'Your Self-Confidence score is lower compared to other youth athletes. Self-confidence is your core beliefs about yourself. Your score suggests that you are still strengthening your views and beliefs about yourself. Those who score higher in this category, use healthy coping skills. You are still in the process of learning them and applying them to your life, and that is okay!',
-    next_steps: 'To improve your confidence, try to start asking more questions in practice. Let your coach know how you’re doing and how you’re feeling. It’s okay if you don’t feel comfortable right away–try to start with small questions and small pieces of information, and then ask for help more often as you get more comfortable. Another thing you can do to help you think positively and improve your confidence is to write down 3 good things you did at each practice or game. If you don’t know, ask your coach to help! Finally, remember to focus on being the best athlete you can be regardless of what other people think, say, or do.',
+    next_steps: 'To improve your self-confidence, try to start asking more questions in practice. Let your coach know how you’re doing and how you’re feeling. It’s okay if you don’t feel comfortable right away–try to start with small questions and small pieces of information, and then ask for help more often as you get more comfortable. Another thing you can do to help you think positively and improve your confidence is to write down 3 good things you did at each practice or game. If you don’t know, ask your coach to help! Finally, remember to focus on being the best athlete you can be regardless of what other people think, say, or do.',
   },
   {
     name: YouthCluster.SelfConfidence,

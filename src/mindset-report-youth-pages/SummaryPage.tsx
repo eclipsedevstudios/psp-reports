@@ -102,26 +102,26 @@ const howToReadStrings: { [key in Language]: ReactNode } = {
     <h1>How to Read this Report</h1>
     <p>
       Your scores represent your percentiles in each of the categories above.
-      This means that if you scored in the 10th percentile. 10% of the athletes at your
+      This means that if you scored in the 10th percentile, 10% of the athletes at your
       level received your score or below and 90% reported scores higher than yours.
       Below are the categories of scores you will see on this report.
     </p>
     <ul>
       <li><b>Growth Opportunity (10th and 20th percentile)</b>: This is an area where you have plenty of room to
 improve your behaviors, thoughts, and feelings.</li>
-      <li><b>Emerging (30th and 40th percentile)</b>: Your behaviors, thoughts, and feelings are starting to emerge,
+      <li><b>Emerging (30th and 40th percentile)</b>: Your behaviors, thoughts, and feelings are starting to show,
 but you still have plenty of room to grow.</li>
       <li><b>Foundational (50th and 60th percentile)</b>: Your behaviors, thoughts, and feelings are providing you with
 a solid foundation, and you can use that as a base to continue to grow.</li>
       <li><b>Developed (70th and 80th percentile)</b>: Your behaviors, thoughts, and feelings are developed. However,
 there is still room to grow.</li>
-      <li><b>Advanced (90th and 100th percentile)</b>: You are excelling. However, remember not to get complacent
+      <li><b>Advanced (90th and 100th percentile)</b>: You are excelling. However, remember not to get comfortable
 and to continue to always work on your mental wellness and performance.</li>
     </ul>
     <p>
       No score is indicative of your physical abilities or implies that you are a "good" or
       a "bad" athlete. This report is simply designed to encourage the development
-      of your mental skills throughout your athletic endeavors.
+      of your mental skills throughout your athletic opportunities.
     </p>
   </>,
   [Language.Spanish]: <>

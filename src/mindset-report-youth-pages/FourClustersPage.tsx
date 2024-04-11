@@ -105,16 +105,11 @@ const pageHeaderStrings: { [key in Language]: ReactNode } = {
 const introParagraphStrings: { [key in Language]: ReactNode } = {
   [Language.English]: <>
     The clusters below include the thoughts, feelings, and behaviors that contribute to optimal
-    performance and mental health in athletes. All clusters have been identified as "very" or
+    performance and mental health in youth athletes. All clusters have been identified as "very" or
     "extremely" important by our pool of subject matter experts to positive performance
     outcomes and overall mental wellness.
   </>,
-  [Language.Spanish]: <>
-    Los grupos a continuación incluyen los pensamientos, sentimientos y comportamientos que
-    contribuyen al rendimiento óptimo y la salud mental de los atletas. Nuestro grupo de expertos en la
-    materia ha identificado todos los grupos como "muy" o "extremadamente" importantes para
-    obtener resultados de rendimiento positivos y bienestar mental general.
-  </>,
+  [Language.Spanish]: <></>,
 }
 
 const BASE = 8;
