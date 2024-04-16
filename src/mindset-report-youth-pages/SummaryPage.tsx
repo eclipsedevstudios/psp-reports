@@ -103,7 +103,7 @@ const howToReadStrings: { [key in Language]: ReactNode } = {
     <p>
       Your scores represent your percentiles in each of the categories above.
       This means that if you scored in the 10th percentile, 10% of the athletes at your
-      level received your score or below and 90% reported scores higher than yours.
+      level received your score or below, and 90% reported scores higher than yours.
       Below are the categories of scores you will see on this report.
     </p>
     <ul>
