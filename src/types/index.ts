@@ -17,3 +17,7 @@ export enum Language {
     English = 'en',
     Spanish = 'es',
 }
+
+export enum Sport {
+    Hockey = 'hockey',
+ }

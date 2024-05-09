@@ -8,7 +8,7 @@ import { PageHeaderHr } from '../components-shared/PageHeaderHr';
 import PageFooter from '../components-shared/PageFooter';
 import { YouthSurveyResponse } from '../models/surveyResponse';
 import { percentileInterpretationYouth } from '../constants/clusters_youth';
-import { Language } from '../types';
+import { Language, Sport} from '../types';
 
 interface ClusterSummaryPageProps {
   clusterName: string;
@@ -17,6 +17,7 @@ interface ClusterSummaryPageProps {
   clusterFunFact: string;
   surveyResponse: YouthSurveyResponse;
   pageNum: number;
+  sport: string;
 }
 
 const ClusterSummaryPage = ({
@@ -26,6 +27,7 @@ const ClusterSummaryPage = ({
   clusterFunFact,
   surveyResponse,
   pageNum,
+  sport,
 }: ClusterSummaryPageProps) => {
   const language = surveyResponse.language;
   const clusterResult = surveyResponse.clusterResults.filter(cluster => cluster.name === clusterName)[0];
@@ -120,7 +122,7 @@ const ClusterSummaryPage = ({
             {developmentalOpportunitiesHeaderString[language]}
           </h1>
           <p>
-            {interpretation.next_steps}
+            {sport === Sport.Hockey ? interpretation.next_steps_hockey : interpretation.next_steps}
           </p>
         </ClusterAnalysis>
         <ClusterRight>

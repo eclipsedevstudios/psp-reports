@@ -45,6 +45,7 @@ function MindsetReportYouth() {
       },
     ] as YouthClusterResult[],
     language: params.get('language') as Language || Language.English,
+    sport: params.get('sport') || '',
   };
 
   console.log(surveyResponse);
@@ -77,6 +78,7 @@ function MindsetReportYouth() {
           <ReportPage>
             <CoverPage
               language={surveyResponse.language}
+              sport={surveyResponse.sport}
             />
           </ReportPage>
           <ReportPage>
@@ -105,6 +107,7 @@ function MindsetReportYouth() {
                 clusterFunFact={cluster.funFact}
                 surveyResponse={surveyResponse}
                 pageNum={index+4}
+                sport={surveyResponse.sport}
               />
             </ReportPage>
           ))}

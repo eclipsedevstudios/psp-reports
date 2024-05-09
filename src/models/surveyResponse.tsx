@@ -14,6 +14,7 @@ export interface YouthSurveyResponse {
    age: string;
    clusterResults: YouthClusterResult[];
    language: Language;
+   sport: string;
 }
 
 export interface AdultClusterResult {

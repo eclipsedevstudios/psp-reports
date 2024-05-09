@@ -1,15 +1,16 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { Language } from '../types';
+import { Language, Sport } from '../types';
 import coverImage from '../images/cover_youth.png';
+import coverImageHockey from '../images/cover_youth_hockey.png'
 import coverBackgroundGradient from '../images/cover-background-gradient.jpg';
 
-const CoverPage = ({ language }: { language: Language }) => {
+const CoverPage = ({ language, sport }: { language: Language, sport: string }) => {
   return (
     <>
       <CoverImage>
-        <img src={coverImage} />
+        <img src={sport === Sport.Hockey ? coverImageHockey : coverImage} />
       </CoverImage>
       <CoverText>
         <CoverTextHeader>
