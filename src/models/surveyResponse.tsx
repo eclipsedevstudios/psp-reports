@@ -8,6 +8,13 @@ export interface AdultSurveyResponse {
    language: Language;
 }
 
+export interface StaffSurveyResponse {
+   athleteName: string;
+   recordedDate: string;
+   clusterResults: StaffClusterResult[];
+   language: Language;
+}
+
 export interface YouthSurveyResponse {
    athleteName: string;
    recordedDate: string;
@@ -23,6 +30,13 @@ export interface AdultClusterResult {
    percentile: string;
    percentileCollege: string;
    percentilePro: string;
+   rawScore: string;
+}
+
+export interface StaffClusterResult {
+   name: string;
+   label: string;
+   percentile: string;
    rawScore: string;
 }
 

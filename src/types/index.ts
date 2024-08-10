@@ -1,23 +1,31 @@
 export enum AdultCluster {
-    GrowthMindset = 'growth_mindset',
-    MentalSkills = 'mental_skills',
-    TeamSupport = 'team_support',
-    HealthHabits = 'health_habits',
-    SelfReflection = 'self_reflection',
+  GrowthMindset = 'growth_mindset',
+  MentalSkills = 'mental_skills',
+  TeamSupport = 'team_support',
+  HealthHabits = 'health_habits',
+  SelfReflection = 'self_reflection',
+}
+
+export enum StaffCluster {
+  PerformanceMindset = 'performance_mindset',
+  MindfulIntention = 'mindful_intention',
+  Recovery = 'recovery',
+  TeamCulture = 'team_culture',
+  RelationalDynamics = 'relational_dynamics',
 }
 
 export enum YouthCluster {
-    GrowthMindset = 'growth_mindset',
-    SelfConfidence = 'self_confidence',
-    TeamCulture = 'team_culture',
-    HealthBehaviors = 'health_behaviors',
+  GrowthMindset = 'growth_mindset',
+  SelfConfidence = 'self_confidence',
+  TeamCulture = 'team_culture',
+  HealthBehaviors = 'health_behaviors',
 }
 
 export enum Language {
-    English = 'en',
-    Spanish = 'es',
+  English = 'en',
+  Spanish = 'es',
 }
 
 export enum Sport {
-    Hockey = 'hockey',
+  Hockey = 'hockey',
  }
