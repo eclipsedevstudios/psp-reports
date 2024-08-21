@@ -53,7 +53,7 @@ const mindsetDescriptionStrings: { [key in Language]: ReactNode } = {
     <p>
       The information included in this report is
       designed to provide you with important
-      knowledge and information needed to 1)
+      information needed to 1)
       increase knowledge and awareness; and 2)
       take your mental game to the next level. In
       the pages to follow, you’ll learn about how
@@ -77,7 +77,7 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
   [Language.English]: <>
     <h2>Our Testing Sample</h2>
     <p>
-    Our sample included over 500 sport
+    Our sample included over 370 sport
     staff at all levels of sport, from
     coaches to athletic trainers and
     front office staff.

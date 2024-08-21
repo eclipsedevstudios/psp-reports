@@ -56,8 +56,7 @@ const wrapUpStrings: { [key in Language]: ReactNode } = {
     <p>
       The Mindset Assessment for sport staff is designed to help individuals like you live
       purposeful lives and is grounded in the conviction that sport and life are intertwined.
-      Practicing healthy life habits translates to meaningful experiences in sport. Being
-      intentional about your mental game during competition strengthens your life experiences.
+      Practicing healthy life habits translates to meaningful experiences in sport.
       Sport is a microcosm of life and continuing to work on your mindset will cultivate success
       and growth.
     </p>
