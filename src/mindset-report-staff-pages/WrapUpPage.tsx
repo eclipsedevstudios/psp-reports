@@ -70,7 +70,7 @@ const wrapUpStrings: { [key in Language]: ReactNode } = {
       The mental side of sport is what separates good from great. Whether you’re a coach,
       referee, or front office staff, the benefits of sport psychology are for you.
       In addition, if you’re looking to improve your scores, reach out to one of our sport
-      psychology professionals at <a href="https://premiersportpsychology.com/requestappointment/">premiersportpsychology.com/requestappointment</a>.
+      psychology professionals at <a href="https://premiersportpsychology.com/request-appointment/">premiersportpsychology.com/request-appointment</a>.
     </p>
   </div>,
   [Language.Spanish]: <></>

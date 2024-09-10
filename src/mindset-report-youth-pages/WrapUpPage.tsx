@@ -54,7 +54,7 @@ const wrapUpStrings: { [key in Language]: ReactNode } = {
       you respond in a healthy way when things don’t go your way.
     </p>
     <p>
-      In addition, if you’re looking to improve your scores, reach out to one of our sport psychology professionals here (<a href="https://premiersportpsychology.com/requestappointment/">premiersportpsychology.com/requestappointment</a>) and check out our Premier Mindset Program (<a href="https://mindsetprogram.com/">mindsetprogram.com</a>) for hands-on activities and guidance for improving in these four areas!
+      In addition, if you’re looking to improve your scores, reach out to one of our sport psychology professionals here (<a href="https://premiersportpsychology.com/request-appointment/">premiersportpsychology.com/request-appointment</a>) and check out our Premier Mindset Program (<a href="https://mindsetprogram.com/">mindsetprogram.com</a>) for hands-on activities and guidance for improving in these four areas!
     </p>
     <p>
       The Mindset Assessment for Youth Athletes is designed to help athletes live

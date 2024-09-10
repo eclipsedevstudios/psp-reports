@@ -78,7 +78,7 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
     <h2>Our Testing Sample</h2>
     <p>
     Our sample included over 370 sport
-    staff at all levels of sport, from
+    staff at all levels of sport, ranging from
     coaches to athletic trainers and
     front office staff.
     </p>
