@@ -10,7 +10,9 @@ import websiteImage from '../images/website.png';
 const ContactUs = ({ language }: { language: Language }) => {
   return (
     <ContactUsWrapper>
-      {contactUsStrings[language]}
+      <ContactUsHeader>
+        {contactUsStrings[language]}
+      </ContactUsHeader>
       <ContactUsRow>
         <ContactUsItem>
           <img src={websiteImage} />
@@ -44,6 +46,10 @@ const ContactUsWrapper = styled.div`
   background-color: rgb(238,238,238);
   padding: ${BASE}px ${BASE*4}px;
   border-radius: ${BASE}px;
+`;
+
+const ContactUsHeader = styled.div`
+  text-align: center;
 `;
 
 const ContactUsRow = styled.div`

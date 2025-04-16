@@ -47,7 +47,7 @@ const CoverImage = styled.div`
 const CoverText = styled.div`
   display: flex;
   flex-direction: row;
-  column-gap: ${BASE * 6}px;
+  column-gap: ${BASE * 4}px;
   align-items: center;
   height: 100%;
   background-image: url(${coverBackgroundGradient});
@@ -55,10 +55,10 @@ const CoverText = styled.div`
   background-repeat: no-repeat;
   background-color: rgb(236, 236, 236);
   margin-top: ${BASE * -1}px;
-  padding: ${BASE * 6}px ${BASE * 10}px;
+  padding: ${BASE * 6}px ${BASE * 6}px;
 
   img {
-    width: 240px;
+    width: 320px;
   }
 `;
 

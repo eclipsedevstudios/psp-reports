@@ -60,7 +60,7 @@ const WrapUpPage = () => {
         <p>
           <ul>
             <li>
-              Share your Mindset Assessment Results with your current sport psychology provider. If you don’t already have one, remember you can utilize your “coaching dollars” for mental skills coaching too! See the list of Health – Recommended Providers created by the USNDP (which includes <a href="mailto:npenz@premiersportpsychology.com">npenz@premiersportpsychology.com</a>) if you don’t know who to reach out to.
+              Share your Mindset Assessment Results with your current sport psychology provider. If you don’t already have one, remember you can utilize your “coaching dollars” for mental skills coaching too! See the list of Health – Recommended Providers created by the USNDP (<b>which includes <a href="mailto:npenz@premiersportpsychology.com">npenz@premiersportpsychology.com</a></b>) if you don’t know who to reach out to.
             </li>
             <li>
               Look at your Mindset Assessment result and pick one or two areas that you want to improve. Then, cross-reference with the Junior54 sessions and pick some of the exercises that connect to an area you want to improve. For example, if you want to improve your Self-Confidence score, then commit to practicing some of the Junior 54 golf exercises that can directly impact your confidence.
