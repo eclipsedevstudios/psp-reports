@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Language } from '../types';
 import emailImage from '../images/email.png';
+import mindsetProgramImage from '../images/mindset_program.png';
 import phoneImage from '../images/phone.png';
 import websiteImage from '../images/website.png';
 
@@ -12,16 +13,20 @@ const ContactUs = ({ language }: { language: Language }) => {
       {contactUsStrings[language]}
       <ContactUsRow>
         <ContactUsItem>
-          <img src={phoneImage} />
-          <p>952.835.8513</p>
-        </ContactUsItem>
-        <ContactUsItem>
           <img src={websiteImage} />
           <p>premiersportpsychology.com</p>
         </ContactUsItem>
         <ContactUsItem>
+          <img src={phoneImage} />
+          <p>952.835.8513</p>
+        </ContactUsItem>
+        <ContactUsItem>
           <img src={emailImage} />
           <p>admin@premiersportpsychology.com</p>
+        </ContactUsItem>
+        <ContactUsItem>
+          <img src={mindsetProgramImage} />
+          <p>mindsetprogram.com</p>
         </ContactUsItem>
       </ContactUsRow>
     </ContactUsWrapper>
@@ -44,6 +49,7 @@ const ContactUsWrapper = styled.div`
 const ContactUsRow = styled.div`
   display: flex;
   flex-direction: row;
+  column-gap: ${BASE * 2}px;
   justify-content: center;
   align-items: center;
 `;

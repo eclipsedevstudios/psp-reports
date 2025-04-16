@@ -6,7 +6,7 @@ const PageFooter = ({ pageNum }: { pageNum: number }) => {
   return (
     <PageFooterWrapper>
       <div>
-        &copy; 2024 Premier Sport Psychology PLLC
+        &copy; 2025 Premier Sport Psychology PLLC
       </div>
       <img src={logoImage} />
       <PageNum>
