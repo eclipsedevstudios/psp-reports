@@ -77,17 +77,17 @@ const BASE = 8;
 
 const WrapUpRow = styled.div`
   display: flex;
-  column-gap: ${BASE * 4}px;
+  column-gap: ${BASE * 3}px;
   margin-top: ${BASE}px;
   margin-bottom: ${BASE * 2}px;
 
   p {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.5;
   }
   
   h2 {
-    font-size: 30px;
+    font-size: 28px;
     font-family: 'League Gothic';
     letter-spacing: 1.2px;
     margin-top: ${BASE * -1}px;
@@ -96,12 +96,12 @@ const WrapUpRow = styled.div`
 
 const AthleteImage = styled.div`
   > img {
-    height: 400px;
+    height: 370px;
   }
 `;
 
 const WrapUpBottom = styled.div`
-  margin-top: ${BASE * -2}px;
+  margin-top: ${BASE * -1}px;
 
   p {
     font-size: 16px;
