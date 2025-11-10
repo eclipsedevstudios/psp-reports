@@ -10,6 +10,7 @@ import { Language, MindBalanceCluster } from "./types";
 import "./App.css";
 import { clusters } from "./constants/clusters_mindbalance";
 import ClusterSummaryPage from "./mindset-balance-report/ClusterSummaryPage";
+import WrapUpPage from "./mindset-balance-report/WrapUpPage";
 
 function MindsetReport() {
   // The ReportMetadata component is hidden when reportOnly=true
@@ -119,7 +120,10 @@ function MindsetReport() {
             />
           </ReportPage>
         ))}
-      {/* Add more pages here based on PDF structure */}
+      <ReportPage>
+        <WrapUpPage language={language} pageNum={8} />
+      </ReportPage>
+    
     </>
   );
 }
