@@ -21,6 +21,13 @@ export enum YouthCluster {
   HealthBehaviors = 'health_behaviors',
 }
 
+export enum MindBalanceCluster {
+  GrowthMindset = 'growth_mindset',
+  SelfConfidence = 'self_confidence',
+  TeamCulture = 'team_culture',
+  HealthBehaviors = 'health_behaviors',
+}
+
 export enum Language {
   English = 'en',
   Spanish = 'es',
