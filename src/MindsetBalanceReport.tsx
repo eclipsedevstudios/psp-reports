@@ -21,26 +21,26 @@ function MindsetReport() {
   // Static values for now - will be made dynamic based on PDF requirements
   const language: Language =
     (params.get("language") as Language) || Language.English;
-  const athleteName = params.get("athleteName") || "Sample Athlete";
-  const recordedDate = params.get("recordedDate") || "2024-01-01";
-  const level = params.get("level") || "Collegiate";
-  const providerName = params.get("providerName") || "Sample Provider";
-  const age = params.get("age") || "20";
+  const athleteName = params.get("athleteName") || "-";
+  const recordedDate = params.get("recordedDate") || "-";
+  const level = params.get("level") || "-";
+  const providerName = params.get("providerName") || "-";
+  const age = params.get("age") || "-";
   // Get percentile values from query params (or use scores as percentiles)
   const growthPercentile =
-    params.get("growthPercentile") || params.get("growthScore") || "10";
+    params.get("growthPercentile") || params.get("growthScore") || "0";
   const healthBehavioursPercentile =
     params.get("healthBehavioursPercentile") ||
     params.get("healthBehavioursScore") ||
-    "40";
+    "0";
   const selfConfidencePercentile =
     params.get("selfConfidencePercentile") ||
     params.get("selfConfidenceScore") ||
-    "20";
+    "0";
   const teamCulturePercentile =
     params.get("teamCulturePercentile") ||
     params.get("teamCultureScore") ||
-    "30";
+    "0";
 
   const surveyResponse: MindBalanceSurveyResponse = {
     clusterResults: [
