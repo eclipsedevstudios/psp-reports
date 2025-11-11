@@ -19,11 +19,121 @@ interface ClusterSummaryPageProps {
   pageNum: number;
 }
 
-// Helper function to convert score (1-10) to percentile
-const convertScoreToPercentile = (score: string): number => {
-  const numScore = parseFloat(score);
-  const roundedScore = Math.round(numScore);
+type PercentileBucket = {
+  minScore: number;
+  maxScore: number;
+  percentile: number;
+};
+
+const clusterPercentileBuckets: Record<MindBalanceCluster, PercentileBucket[]> = {
+  [MindBalanceCluster.GrowthMindset]: [
+    { minScore: 0, maxScore: 5.9100, percentile: 10 },
+    { minScore: 5.9101, maxScore: 6.4400, percentile: 20 },
+    { minScore: 6.4401, maxScore: 6.8400, percentile: 30 },
+    { minScore: 6.8401, maxScore: 7.1100, percentile: 40 },
+    { minScore: 7.1101, maxScore: 7.3300, percentile: 50 },
+    { minScore: 7.3301, maxScore: 7.7800, percentile: 60 },
+    { minScore: 7.7801, maxScore: 8.0000, percentile: 70 },
+    { minScore: 8.0001, maxScore: 8.4400, percentile: 80 },
+    { minScore: 8.4401, maxScore: 9.1100, percentile: 90 },
+    { minScore: 9.1101, maxScore: 10, percentile: 100 },
+  ],
+  [MindBalanceCluster.SelfConfidence]: [
+    { minScore: 0, maxScore: 6.0000, percentile: 10 },
+    { minScore: 6.0001, maxScore: 6.4000, percentile: 20 },
+    { minScore: 6.4001, maxScore: 6.8000, percentile: 30 },
+    { minScore: 6.8001, maxScore: 7.2000, percentile: 40 },
+    { minScore: 7.2001, maxScore: 7.8000, percentile: 50 },
+    { minScore: 7.8001, maxScore: 8.0000, percentile: 60 },
+    { minScore: 8.0001, maxScore: 8.4000, percentile: 70 },
+    { minScore: 8.4001, maxScore: 8.8000, percentile: 80 },
+    { minScore: 8.8001, maxScore: 9.2000, percentile: 90 },
+    { minScore: 9.2001, maxScore: 10, percentile: 100 },
+  ],
+  [MindBalanceCluster.HealthBehaviors]: [
+    { minScore: 0, maxScore: 5.5000, percentile: 10 },
+    { minScore: 5.5001, maxScore: 6.0000, percentile: 20 },
+    { minScore: 6.0001, maxScore: 6.5000, percentile: 30 },
+    { minScore: 6.5001, maxScore: 6.7500, percentile: 40 },
+    { minScore: 6.7501, maxScore: 7.0000, percentile: 50 },
+    { minScore: 7.0001, maxScore: 7.2500, percentile: 60 },
+    { minScore: 7.2501, maxScore: 7.7500, percentile: 70 },
+    { minScore: 7.7501, maxScore: 8.2000, percentile: 80 },
+    { minScore: 8.2001, maxScore: 8.5000, percentile: 90 },
+    { minScore: 8.5001, maxScore: 10, percentile: 100 },
+  ],
+  [MindBalanceCluster.TeamCulture]: [
+    { minScore: 0, maxScore: 6.1700, percentile: 10 },
+    { minScore: 6.1701, maxScore: 7.0000, percentile: 20 },
+    { minScore: 7.0001, maxScore: 7.5000, percentile: 30 },
+    { minScore: 7.5001, maxScore: 7.8300, percentile: 40 },
+    { minScore: 7.8301, maxScore: 8.1700, percentile: 50 },
+    { minScore: 8.1701, maxScore: 8.3300, percentile: 60 },
+    { minScore: 8.3301, maxScore: 8.8300, percentile: 70 },
+    { minScore: 8.8301, maxScore: 9.1700, percentile: 80 },
+    { minScore: 9.1701, maxScore: 9.6700, percentile: 90 },
+    { minScore: 9.6701, maxScore: 10, percentile: 100 },
+  ],
+};
+
+const convertScoreToPercentile = (score: number): number => {
+  const roundedScore = Math.round(score);
   return roundedScore * 10;
+};
+
+const determinePercentile = (clusterName: MindBalanceCluster, score: number): number => {
+  const buckets = clusterPercentileBuckets[clusterName];
+  if (buckets) {
+    const bucket = buckets.find(
+      ({ minScore, maxScore }) => score >= minScore && score <= maxScore + 0.000001,
+    );
+    if (bucket) {
+      return bucket.percentile;
+    }
+  }
+
+  return convertScoreToPercentile(score);
+};
+
+const percentileRangeLabels: Record<number, string> = {
+  10: 'Growth Opportunity',
+  20: 'Growth Opportunity',
+  30: 'Emerging',
+  40: 'Emerging',
+  50: 'Foundational',
+  60: 'Foundational',
+  70: 'Developed',
+  80: 'Developed',
+  90: 'Advanced',
+  100: 'Advanced',
+};
+
+const getUnderstandingCopy = (
+  clusterLabel: string,
+  percentile: number,
+  language: Language,
+): ReactNode | null => {
+  if (language !== Language.English) {
+    return null;
+  }
+
+  const rangeLabel = percentileRangeLabels[percentile];
+  if (!rangeLabel) {
+    return null;
+  }
+
+  const higherPercent = percentile === 100 ? 0 : 100 - percentile;
+  const strongText = `Your ${clusterLabel} score was in the ${rangeLabel} range (${percentile}th percentile) when compared to other youth athletes.`;
+  const detailText =
+    higherPercent === 0
+      ? `Almost no youth athletes are scoring higher than you in ${clusterLabel}.`
+      : `${higherPercent}% of youth athletes at your level reported scores higher than yours in ${clusterLabel}.`;
+
+  return (
+    <>
+      <strong>{strongText}</strong>{' '}{detailText}
+    </>
+  );
 };
 
 const ClusterSummaryPage = ({
@@ -40,7 +150,7 @@ const ClusterSummaryPage = ({
   if (!clusterResult) return null;
 
   const score = parseFloat(clusterResult.percentile);
-  const percentile = convertScoreToPercentile(clusterResult.percentile);
+  const percentile = determinePercentile(clusterName, score);
 
   const classifyPercentile = (percentile: number, language: Language) => {
     if (language === Language.English) {
@@ -82,6 +192,8 @@ const ClusterSummaryPage = ({
       percentile <= obj.maxPercentile
   );
 
+  const understanding = getUnderstandingCopy(clusterLabel, percentile, language);
+
   return (
     <PageWrapper>
       <PageHeader>
@@ -104,15 +216,17 @@ const ClusterSummaryPage = ({
             {understandingYourScoreHeaderString[language]}
           </ScoreHeader>
           <ScoreExplanation>
-            {language === Language.Spanish ?
+            {understanding ? (
+              understanding
+            ) : language === Language.Spanish ? (
               <>
                 Tu puntuación de {clusterLabel} se encuentra en el percentil {percentile}. Esto significa que el {percentile}% de los atletas de tu nivel recibieron tu puntuación o menos, y el {100 - percentile}% reportaron puntuaciones más altas que la tuya.
               </>
-              :
+            ) : (
               <>
                 Your {clusterLabel} score is in the {percentile}th percentile. This means that {percentile}% of athletes at your level received your score or below, and {100 - percentile}% reported scores higher than yours.
               </>
-            }
+            )}
           </ScoreExplanation>
           {interpretation && (
             <>
@@ -122,6 +236,16 @@ const ClusterSummaryPage = ({
               <ScoreExplanation>
                 {interpretation.meaning}
               </ScoreExplanation>
+              {interpretation.developmentalOpportunity && (
+                <>
+                  <ScoreHeader>
+                    {developmentalOpportunitiesHeaderString[language]}
+                  </ScoreHeader>
+                  <ScoreExplanation>
+                    {interpretation.developmentalOpportunity}
+                  </ScoreExplanation>
+                </>
+              )}
             </>
           )}
         </ClusterAnalysis>
@@ -162,6 +286,11 @@ const whatYourScoreMeansHeaderString: { [key in Language]: ReactNode } = {
   [Language.English]: 'WHAT YOUR SCORE MEANS',
   [Language.Spanish]: 'QUÉ SIGNIFICA TU PUNTUACIÓN',
 }
+
+const developmentalOpportunitiesHeaderString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'DEVELOPMENTAL OPPORTUNITIES',
+  [Language.Spanish]: 'OPORTUNIDADES DE DESARROLLO',
+};
 
 const BASE = 8;
 
