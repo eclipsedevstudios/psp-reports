@@ -81,7 +81,17 @@ const convertScoreToPercentile = (score: number): number => {
   return roundedScore * 10;
 };
 
-const determinePercentile = (clusterName: MindBalanceCluster, score: number): number => {
+// Format score to show whole numbers without decimals when appropriate
+const formatScore = (score: number): string => {
+  // If the score is a whole number, return it without decimals
+  if (score % 1 === 0) {
+    return score.toString();
+  }
+  // Otherwise, show up to 2 decimal places
+  return score.toFixed(2);
+};
+
+export const determinePercentile = (clusterName: MindBalanceCluster, score: number): number => {
   const buckets = clusterPercentileBuckets[clusterName];
   if (buckets) {
     const bucket = buckets.find(
@@ -211,7 +221,7 @@ const ClusterSummaryPage = ({
       </ClusterDescription>
       <ClusterRow>
         <ClusterAnalysis>
-          <ScoreHeader>{scoreLabelString[language]}: {score.toFixed(2)} {scoreOutOfString[language]}</ScoreHeader>
+          <ScoreHeader>{scoreLabelString[language]}: {formatScore(score)} {scoreOutOfString[language]}</ScoreHeader>
           <ScoreHeader>
             {understandingYourScoreHeaderString[language]}
           </ScoreHeader>

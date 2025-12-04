@@ -8,6 +8,7 @@ import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
 import PageFooter from '../components-shared/PageFooter';
 import { MindBalanceCluster, Language } from '../types';
 import { clusters } from '../constants/clusters_mindbalance';
+import { determinePercentile } from './ClusterSummaryPage';
 
 export interface MindBalanceClusterResult {
   name: MindBalanceCluster;
@@ -37,24 +38,29 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: MindBalanceSurveyResp
         </AthleteCard>
       </PageHeader>
       <ClusterResults>
-        {surveyResponse.clusterResults.map((cluster) => (
-          <>
-            <h1>
-              {clusters.filter(c => c.name === cluster.name && c.language === language)[0].label}
-            </h1>
-            <ClusterResult>
-              <tr>
-                <td>
-                  {comparedWithPeersString[language]}
-                </td>
-                <td>
-                  <PercentileVisualization percentile={cluster.percentile} />
-                </td>
-                <PercentileNumber>{convertScoreToPercentile(cluster.percentile)}th</PercentileNumber>
-              </tr>
-            </ClusterResult>
-          </>
-        ))}
+        {surveyResponse.clusterResults.map((cluster) => {
+          const score = parseFloat(cluster.percentile);
+          const calculatedPercentile = determinePercentile(cluster.name, score);
+          
+          return (
+            <>
+              <h1>
+                {clusters.filter(c => c.name === cluster.name && c.language === language)[0].label}
+              </h1>
+              <ClusterResult>
+                <tr>
+                  <td>
+                    {comparedWithPeersString[language]}
+                  </td>
+                  <td>
+                    <PercentileVisualization percentile={calculatedPercentile.toString()} />
+                  </td>
+                  <PercentileNumber>{calculatedPercentile}th</PercentileNumber>
+                </tr>
+              </ClusterResult>
+            </>
+          );
+        })}
       </ClusterResults>
       <HowToReadCard>
         {howToReadStrings[language]}
@@ -70,22 +76,12 @@ interface PercentileVisualizationProps {
 }
 
 const PercentileVisualization = ({ percentile }: PercentileVisualizationProps) => {
-  // Convert score (1-10, can be decimal) to percentile (10, 20, 30, etc.)
-  // Round the number first, then multiply by 10
-  const score = parseFloat(percentile);
-  const roundedScore = Math.round(score);
-  const percentileValue = roundedScore * 10;
+  // percentile is now already a calculated percentile value (10, 20, 30, etc.), not a score
+  const percentileValue = parseInt(percentile);
   
   return (
     <img src={require(`../images/percentile_bars/${percentileValue}.png`)} alt={`${percentileValue}th percentile`} />
   )
-}
-
-// Helper function to convert score to percentile for display
-const convertScoreToPercentile = (score: string): string => {
-  const numScore = parseFloat(score);
-  const roundedScore = Math.round(numScore);
-  return (roundedScore * 10).toString();
 }
 
 const headerStrings: { [key in Language]: ReactNode } = {
