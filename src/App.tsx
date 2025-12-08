@@ -8,6 +8,7 @@ import MindsetReportStaff from './MindsetReportStaff';
 import MindsetReportYouth from './MindsetReportYouth';
 import MindsetReportYouthGolf from './MindsetReportYouthGolf';
 import MindsetBalanceReport from './MindsetBalanceReport';
+import MindsetBalanceReportAdult from './MindBalanceReportAdult';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/youth-golf" element={<MindsetReportYouthGolf />} />
         <Route path="/staff" element={<MindsetReportStaff />} />
         <Route path="/mindset" element={<MindsetBalanceReport />} />
+        <Route path="/mindset-adult" element={<MindsetBalanceReportAdult />} />
     </Routes>
     </Router>
   );

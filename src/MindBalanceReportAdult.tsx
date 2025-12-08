@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-import CoverPage from "./mindset-balance-report/CoverPage";
-import MindsetAssessmentPage from "./mindset-balance-report/MindsetAssessmentPage";
-import FourClustersPage from "./mindset-balance-report/FourClustersPage";
+import CoverPage from "./mindset-balance-adult-report/CoverPage";
+import MindsetAssessmentPage from "./mindset-balance-adult-report/MindsetAssessmentPage";
+import FiveClustersPage from "./mindset-balance-adult-report/FiveClustersPage";
 import SummaryPage, {
   MindBalanceSurveyResponse,
-} from "./mindset-balance-report/SummaryPage";
-import { Language, MindBalanceCluster } from "./types";
+} from "./mindset-balance-adult-report/SummaryPage";
+import { Language, MindBalanceAdultCluster } from "./types";
 import "./App.css";
-import { clusters } from "./constants/clusters_mindbalance";
-import ClusterSummaryPage from "./mindset-balance-report/ClusterSummaryPage";
-import WrapUpPage from "./mindset-balance-report/WrapUpPage";
+import { clusters } from "./constants/clusters_mindbalance_adult";
+import ClusterSummaryPage from "./mindset-balance-adult-report/ClusterSummaryPage";
+import WrapUpPage from "./mindset-balance-adult-report/WrapUpPage";
 
-function MindsetReport() {    
+function MindsetBalanceReportAdult() {
   // The ReportMetadata component is hidden when reportOnly=true
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
@@ -45,19 +45,23 @@ function MindsetReport() {
   const surveyResponse: MindBalanceSurveyResponse = {
     clusterResults: [
       {
-        name: MindBalanceCluster.GrowthMindset,
+        name: MindBalanceAdultCluster.ResilientMindset,
         percentile: growthPercentile,
       },
       {
-        name: MindBalanceCluster.SelfConfidence,
+        name: MindBalanceAdultCluster.MentalSkills,
+        percentile: growthPercentile,
+      },
+      {
+        name: MindBalanceAdultCluster.TeamSupport,
         percentile: selfConfidencePercentile,
       },
       {
-        name: MindBalanceCluster.TeamCulture,
+        name: MindBalanceAdultCluster.HealthHabits,
         percentile: teamCulturePercentile,
       },
       {
-        name: MindBalanceCluster.HealthBehaviors,
+        name: MindBalanceAdultCluster.WellnessAccountability,
         percentile: healthBehavioursPercentile,
       },
     ],
@@ -101,7 +105,7 @@ function MindsetReport() {
         <MindsetAssessmentPage language={language} />
       </ReportPage>
       <ReportPage>
-        <FourClustersPage language={language} />
+        <FiveClustersPage language={language} />
       </ReportPage>
       <ReportPage>
         <SummaryPage surveyResponse={surveyResponse} />
@@ -148,4 +152,4 @@ const ReportPage = styled.div<{ theme: string }>`
   -webkit-print-color-adjust: exact;
 `;
 
-export default MindsetReport;
+export default MindsetBalanceReportAdult;

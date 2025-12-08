@@ -28,6 +28,14 @@ export enum MindBalanceCluster {
   HealthBehaviors = 'health_behaviors',
 }
 
+export enum MindBalanceAdultCluster {
+  ResilientMindset = 'resilient_mindset',
+  MentalSkills = 'mental_skills',
+  TeamSupport = 'team_support',
+  HealthHabits = 'health_habits',
+  WellnessAccountability = 'wellness_accountability',
+}
+
 export enum Language {
   English = 'en',
   Spanish = 'es',
