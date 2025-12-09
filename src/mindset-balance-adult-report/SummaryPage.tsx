@@ -8,11 +8,14 @@ import { PageHeaderSubtitle } from '../components-shared/PageHeaderSubtitle';
 import PageFooter from '../components-shared/PageFooter';
 import { MindBalanceAdultCluster, Language } from '../types';
 import { clusters } from '../constants/clusters_mindbalance_adult';
-import { determinePercentile } from './ClusterSummaryPage';
+import { AthleteLevel } from '../models/surveyResponse';
 
 export interface MindBalanceClusterResult {
   name: MindBalanceAdultCluster;
   percentile: string;
+  score: string;
+  comparedWithPeers?: string;
+  comparedWithCollegeAthletes?: string;
 }
 
 export interface MindBalanceSurveyResponse {
@@ -21,6 +24,7 @@ export interface MindBalanceSurveyResponse {
   athleteName: string;
   age: string;
   recordedDate: string;
+  level: AthleteLevel;
 }
 
 const SummaryPage = ({ surveyResponse }: { surveyResponse: MindBalanceSurveyResponse }) => {
@@ -33,14 +37,15 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: MindBalanceSurveyResp
         <AthleteCard>
           <h1>{surveyResponse.athleteName}</h1>
           <hr />
-          <b>{athleteCardLevelString[language]}</b>: {surveyResponse.age}
+          <b>{athleteCardLevelString[language]}</b>: {surveyResponse.level}
           <br /><b>{athleteCardDateString[language]}</b>: {surveyResponse.recordedDate.split('T')[0]}
         </AthleteCard>
       </PageHeader>
       <ClusterResults>
         {surveyResponse.clusterResults.map((cluster) => {
-          const score = parseFloat(cluster.percentile);
-          const calculatedPercentile = determinePercentile(cluster.name, score);
+          // Convert percentage strings (e.g., "80%") to numbers (e.g., 80)
+          const peersPercentile = cluster.comparedWithPeers ? parseInt(cluster.comparedWithPeers.replace('%', '')) : null;
+          const collegePercentile = cluster.comparedWithCollegeAthletes ? parseInt(cluster.comparedWithCollegeAthletes.replace('%', '')) : null;
           
           return (
             <>
@@ -48,15 +53,28 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: MindBalanceSurveyResp
                 {clusters.filter(c => c.name === cluster.name && c.language === language)[0].label}
               </h1>
               <ClusterResult>
-                <tr>
-                  <td>
-                    {comparedWithPeersString[language]}
-                  </td>
-                  <td>
-                    <PercentileVisualization percentile={calculatedPercentile.toString()} />
-                  </td>
-                  <PercentileNumber>{calculatedPercentile}th</PercentileNumber>
-                </tr>
+                {peersPercentile !== null && (
+                  <tr>
+                    <td>
+                      {comparedWithPeersString[language]}
+                    </td>
+                    <td>
+                      <PercentileVisualization percentile={peersPercentile.toString()} />
+                    </td>
+                    <PercentileNumber>{peersPercentile}th</PercentileNumber>
+                  </tr>
+                )}
+                {collegePercentile !== null && (
+                  <tr>
+                    <td>
+                      {comparedWithCollegeAthletesString[language]}
+                    </td>
+                    <td>
+                      <PercentileVisualization percentile={collegePercentile.toString()} />
+                    </td>
+                    <PercentileNumber>{collegePercentile}th</PercentileNumber>
+                  </tr>
+                )}
               </ClusterResult>
             </>
           );
@@ -76,7 +94,7 @@ interface PercentileVisualizationProps {
 }
 
 const PercentileVisualization = ({ percentile }: PercentileVisualizationProps) => {
-  // percentile is now already a calculated percentile value (10, 20, 30, etc.), not a score
+  // percentile is a number value (10, 20, 30, etc., or 80, 90, etc.)
   const percentileValue = parseInt(percentile);
   
   return (
@@ -104,8 +122,8 @@ const headerStrings: { [key in Language]: ReactNode } = {
 }
 
 const athleteCardLevelString: { [key in Language]: ReactNode } = {
-  [Language.English]: 'Age',
-  [Language.Spanish]: 'Edad',
+  [Language.English]: 'Level',
+  [Language.Spanish]: 'Nivel',
 }
 
 const athleteCardDateString: { [key in Language]: ReactNode } = {
@@ -113,8 +131,13 @@ const athleteCardDateString: { [key in Language]: ReactNode } = {
   [Language.Spanish]: 'Fecha',
 }
 const comparedWithPeersString: { [key in Language]: ReactNode } = {
-  [Language.English]: 'Your score in relation to your peers:',
-  [Language.Spanish]: 'Tu puntuación en relación con tus compañeros:',
+  [Language.English]: 'Compared with peers',
+  [Language.Spanish]: 'Comparado con compañeros',
+}
+
+const comparedWithCollegeAthletesString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'Compared with college athletes',
+  [Language.Spanish]: 'Comparado con atletas universitarios',
 }
 
 const howToReadStrings: { [key in Language]: ReactNode } = {

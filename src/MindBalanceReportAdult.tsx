@@ -11,6 +11,7 @@ import "./App.css";
 import { clusters } from "./constants/clusters_mindbalance_adult";
 import ClusterSummaryPage from "./mindset-balance-adult-report/ClusterSummaryPage";
 import WrapUpPage from "./mindset-balance-adult-report/WrapUpPage";
+import { AthleteLevel } from "./models/surveyResponse";
 
 function MindsetBalanceReportAdult() {
   // The ReportMetadata component is hidden when reportOnly=true
@@ -23,52 +24,95 @@ function MindsetBalanceReportAdult() {
     (params.get("language") as Language) || Language.English;
   const athleteName = params.get("athleteName") || "-";
   const recordedDate = params.get("recordedDate") || "-";
-  const level = params.get("level") || "-";
+  const level = (params.get("level") as AthleteLevel) || "-";
   const providerName = params.get("providerName") || "-";
   const age = params.get("age") || "-";
   // Get percentile values from query params (or use scores as percentiles)
-  const growthPercentile =
-    params.get("growthPercentile") || params.get("growthScore") || "0";
-  const healthBehavioursPercentile =
-    params.get("healthBehavioursPercentile") ||
-    params.get("healthBehavioursScore") ||
-    "0";
-  const selfConfidencePercentile =
-    params.get("selfConfidencePercentile") ||
-    params.get("selfConfidenceScore") ||
-    "0";
-  const teamCulturePercentile =
-    params.get("teamCulturePercentile") ||
-    params.get("teamCultureScore") ||
-    "0";
+
+  //   RESILIENT MINDSET
+  const resilientMindsetScore = params.get("GrowthScore") || "0";
+  const resilientMindsetPercentile = params.get("GP") || "0";
+  const resilientMindsetComparedWithPeers =
+    params.get("GMProComparison") || "0";
+  const resilientMindsetComparedWithCollegeAthletes =
+    params.get("GMColComparison") || "0";
+
+  // MENTAL SKILLS
+  const mentalSkillsScore = params.get("MentalSkills") || "0";
+  const mentalSkillsPercentile = params.get("PP") || "0";
+  const mentalSkillsComparedWithPeers = params.get("MSProComparison") || "0";
+  const mentalSkillsComparedWithCollegeAthletes =
+    params.get("MSColComparison") || "0";
+
+  // TEAM SUPPORT
+  const teamSupportScore = params.get("Team") || "0";
+  const teamSupportPercentile = params.get("TP") || "0";
+  const teamSupportComparedWithPeers = params.get("TSProComparison") || "0";
+  const teamSupportComparedWithCollegeAthletes =
+    params.get("TSColComparison") || "0";
+
+  // HEALTH BEHAVIORS
+  const healthBehavioursScore = params.get("HealthHabits") || "0";
+  const healthBehavioursPercentile = params.get("PhP") || "0";
+  const healthBehavioursComparedWithPeers =
+    params.get("HHProComparison") || "0";
+  const healthBehavioursComparedWithCollegeAthletes =
+    params.get("HHColComparison") || "0";
+
+  // WELLNESS ACCOUNTABILITY
+  const wellnessAccountabilityScore = params.get("SelfReflection") || "0";
+  const wellnessAccountabilityPercentile = params.get("MP") || "0";
+  const wellnessAccountabilityComparedWithPeers =
+    params.get("SRProComparison") || "0";
+  const wellnessAccountabilityComparedWithCollegeAthletes =
+    params.get("SRColComparison") || "0";
 
   const surveyResponse: MindBalanceSurveyResponse = {
     clusterResults: [
       {
         name: MindBalanceAdultCluster.ResilientMindset,
-        percentile: growthPercentile,
+        percentile: resilientMindsetPercentile,
+        score: resilientMindsetScore,
+        comparedWithPeers: resilientMindsetComparedWithPeers,
+        comparedWithCollegeAthletes:
+          resilientMindsetComparedWithCollegeAthletes,
       },
       {
         name: MindBalanceAdultCluster.MentalSkills,
-        percentile: growthPercentile,
+        percentile: mentalSkillsPercentile,
+        score: mentalSkillsScore,
+        comparedWithPeers: mentalSkillsComparedWithPeers,
+        comparedWithCollegeAthletes: mentalSkillsComparedWithCollegeAthletes,
       },
       {
         name: MindBalanceAdultCluster.TeamSupport,
-        percentile: selfConfidencePercentile,
+        percentile: teamSupportPercentile,
+        score: teamSupportScore,
+        comparedWithPeers: teamSupportComparedWithPeers,
+        comparedWithCollegeAthletes: teamSupportComparedWithCollegeAthletes,
       },
       {
         name: MindBalanceAdultCluster.HealthHabits,
-        percentile: teamCulturePercentile,
+        percentile: healthBehavioursPercentile,
+        score: healthBehavioursScore,
+        comparedWithPeers: healthBehavioursComparedWithPeers,
+        comparedWithCollegeAthletes:
+          healthBehavioursComparedWithCollegeAthletes,
       },
       {
         name: MindBalanceAdultCluster.WellnessAccountability,
-        percentile: healthBehavioursPercentile,
+        percentile: wellnessAccountabilityPercentile,
+        score: wellnessAccountabilityScore,
+        comparedWithPeers: wellnessAccountabilityComparedWithPeers,
+        comparedWithCollegeAthletes:
+          wellnessAccountabilityComparedWithCollegeAthletes,
       },
     ],
     language: language,
     athleteName: athleteName,
     age: age,
     recordedDate: recordedDate,
+    level: level as AthleteLevel,
   };
 
   console.log("Mindset Report - Static values:", {
@@ -91,10 +135,14 @@ function MindsetBalanceReportAdult() {
             <li>Level: {level}</li>
             <li>Language: {language}</li>
             <li>Provider Name: {providerName}</li>
-            <li>Growth Percentile: {growthPercentile}</li>
-            <li>Health Behaviours Percentile: {healthBehavioursPercentile}</li>
-            <li>Self Confidence Percentile: {selfConfidencePercentile}</li>
-            <li>Team Culture Percentile: {teamCulturePercentile}</li>
+            <li>Resilient Mindset Percentile: {resilientMindsetPercentile}</li>
+            <li>Mental Skills Percentile: {mentalSkillsPercentile}</li>
+            <li>Team Support Percentile: {teamSupportPercentile}</li>
+            <li>Health Habits Percentile: {healthBehavioursPercentile}</li>
+            <li>
+              Wellness Accountability Percentile:{" "}
+              {wellnessAccountabilityPercentile}
+            </li>
           </ul>
         </ReportMetadata>
       )}
@@ -115,6 +163,7 @@ function MindsetBalanceReportAdult() {
         .map((cluster, index) => (
           <ReportPage key={`cluster-summary-page-${index}`}>
             <ClusterSummaryPage
+              level={level}
               clusterName={cluster.name}
               clusterLabel={cluster.label}
               clusterDescription={cluster.description}
@@ -127,7 +176,6 @@ function MindsetBalanceReportAdult() {
       <ReportPage>
         <WrapUpPage language={language} pageNum={8} />
       </ReportPage>
-    
     </>
   );
 }

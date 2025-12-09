@@ -9,8 +9,10 @@ import PageFooter from '../components-shared/PageFooter';
 import { MindBalanceSurveyResponse } from './SummaryPage';
 import { Language, MindBalanceAdultCluster } from '../types';
 import { percentileInterpretationMindBalanceAdult } from '../constants/percentileInterpretationMindBalanceAdult';
+import { AthleteLevel } from '../models/surveyResponse';
 
 interface ClusterSummaryPageProps {
+  level: AthleteLevel;
   clusterName: MindBalanceAdultCluster;
   clusterLabel: string;
   clusterDescription: string;
@@ -19,79 +21,79 @@ interface ClusterSummaryPageProps {
   pageNum: number;
 }
 
-type PercentileBucket = {
-  minScore: number;
-  maxScore: number;
-  percentile: number;
-};
+// type PercentileBucket = {
+//   minScore: number;
+//   maxScore: number;
+//   percentile: number;
+// };
 
-const clusterPercentileBuckets: Record<MindBalanceAdultCluster, PercentileBucket[]> = {
-  [MindBalanceAdultCluster.ResilientMindset]: [
-    { minScore: 0, maxScore: 5.9100, percentile: 10 },
-    { minScore: 5.9101, maxScore: 6.4400, percentile: 20 },
-    { minScore: 6.4401, maxScore: 6.8400, percentile: 30 },
-    { minScore: 6.8401, maxScore: 7.1100, percentile: 40 },
-    { minScore: 7.1101, maxScore: 7.3300, percentile: 50 },
-    { minScore: 7.3301, maxScore: 7.7800, percentile: 60 },
-    { minScore: 7.7801, maxScore: 8.0000, percentile: 70 },
-    { minScore: 8.0001, maxScore: 8.4400, percentile: 80 },
-    { minScore: 8.4401, maxScore: 9.1100, percentile: 90 },
-    { minScore: 9.1101, maxScore: 10, percentile: 100 },
-  ],
-  [MindBalanceAdultCluster.MentalSkills]: [
-    { minScore: 0, maxScore: 6.0000, percentile: 10 },
-    { minScore: 6.0001, maxScore: 6.4000, percentile: 20 },
-    { minScore: 6.4001, maxScore: 6.8000, percentile: 30 },
-    { minScore: 6.8001, maxScore: 7.2000, percentile: 40 },
-    { minScore: 7.2001, maxScore: 7.8000, percentile: 50 },
-    { minScore: 7.8001, maxScore: 8.0000, percentile: 60 },
-    { minScore: 8.0001, maxScore: 8.4000, percentile: 70 },
-    { minScore: 8.4001, maxScore: 8.8000, percentile: 80 },
-    { minScore: 8.8001, maxScore: 9.2000, percentile: 90 },
-    { minScore: 9.2001, maxScore: 10, percentile: 100 },
-  ],
-  [MindBalanceAdultCluster.TeamSupport]: [
-    { minScore: 0, maxScore: 5.5000, percentile: 10 },
-    { minScore: 5.5001, maxScore: 6.0000, percentile: 20 },
-    { minScore: 6.0001, maxScore: 6.5000, percentile: 30 },
-    { minScore: 6.5001, maxScore: 6.7500, percentile: 40 },
-    { minScore: 6.7501, maxScore: 7.0000, percentile: 50 },
-    { minScore: 7.0001, maxScore: 7.2500, percentile: 60 },
-    { minScore: 7.2501, maxScore: 7.7500, percentile: 70 },
-    { minScore: 7.7501, maxScore: 8.2000, percentile: 80 },
-    { minScore: 8.2001, maxScore: 8.5000, percentile: 90 },
-    { minScore: 8.5001, maxScore: 10, percentile: 100 },
-  ],
-  [MindBalanceAdultCluster.HealthHabits]: [
-    { minScore: 0, maxScore: 6.1700, percentile: 10 },
-    { minScore: 6.1701, maxScore: 7.0000, percentile: 20 },
-    { minScore: 7.0001, maxScore: 7.5000, percentile: 30 },
-    { minScore: 7.5001, maxScore: 7.8300, percentile: 40 },
-    { minScore: 7.8301, maxScore: 8.1700, percentile: 50 },
-    { minScore: 8.1701, maxScore: 8.3300, percentile: 60 },
-    { minScore: 8.3301, maxScore: 8.8300, percentile: 70 },
-    { minScore: 8.8301, maxScore: 9.1700, percentile: 80 },
-    { minScore: 9.1701, maxScore: 9.6700, percentile: 90 },
-    { minScore: 9.6701, maxScore: 10, percentile: 100 },
-  ],
-  [MindBalanceAdultCluster.WellnessAccountability]: [
-    { minScore: 0, maxScore: 6.1700, percentile: 10 },
-    { minScore: 6.1701, maxScore: 7.0000, percentile: 20 },
-    { minScore: 7.0001, maxScore: 7.5000, percentile: 30 },
-    { minScore: 7.5001, maxScore: 7.8300, percentile: 40 },
-    { minScore: 7.8301, maxScore: 8.1700, percentile: 50 },
-    { minScore: 8.1701, maxScore: 8.3300, percentile: 60 },
-    { minScore: 8.3301, maxScore: 8.8300, percentile: 70 },
-    { minScore: 8.8301, maxScore: 9.1700, percentile: 80 },
-    { minScore: 9.1701, maxScore: 9.6700, percentile: 90 },
-    { minScore: 9.6701, maxScore: 10, percentile: 100 },
-  ],
-};
+// const clusterPercentileBuckets: Record<MindBalanceAdultCluster, PercentileBucket[]> = {
+//   [MindBalanceAdultCluster.ResilientMindset]: [
+//     { minScore: 0, maxScore: 5.9100, percentile: 10 },
+//     { minScore: 5.9101, maxScore: 6.4400, percentile: 20 },
+//     { minScore: 6.4401, maxScore: 6.8400, percentile: 30 },
+//     { minScore: 6.8401, maxScore: 7.1100, percentile: 40 },
+//     { minScore: 7.1101, maxScore: 7.3300, percentile: 50 },
+//     { minScore: 7.3301, maxScore: 7.7800, percentile: 60 },
+//     { minScore: 7.7801, maxScore: 8.0000, percentile: 70 },
+//     { minScore: 8.0001, maxScore: 8.4400, percentile: 80 },
+//     { minScore: 8.4401, maxScore: 9.1100, percentile: 90 },
+//     { minScore: 9.1101, maxScore: 10, percentile: 100 },
+//   ],
+//   [MindBalanceAdultCluster.MentalSkills]: [
+//     { minScore: 0, maxScore: 6.0000, percentile: 10 },
+//     { minScore: 6.0001, maxScore: 6.4000, percentile: 20 },
+//     { minScore: 6.4001, maxScore: 6.8000, percentile: 30 },
+//     { minScore: 6.8001, maxScore: 7.2000, percentile: 40 },
+//     { minScore: 7.2001, maxScore: 7.8000, percentile: 50 },
+//     { minScore: 7.8001, maxScore: 8.0000, percentile: 60 },
+//     { minScore: 8.0001, maxScore: 8.4000, percentile: 70 },
+//     { minScore: 8.4001, maxScore: 8.8000, percentile: 80 },
+//     { minScore: 8.8001, maxScore: 9.2000, percentile: 90 },
+//     { minScore: 9.2001, maxScore: 10, percentile: 100 },
+//   ],
+//   [MindBalanceAdultCluster.TeamSupport]: [
+//     { minScore: 0, maxScore: 5.5000, percentile: 10 },
+//     { minScore: 5.5001, maxScore: 6.0000, percentile: 20 },
+//     { minScore: 6.0001, maxScore: 6.5000, percentile: 30 },
+//     { minScore: 6.5001, maxScore: 6.7500, percentile: 40 },
+//     { minScore: 6.7501, maxScore: 7.0000, percentile: 50 },
+//     { minScore: 7.0001, maxScore: 7.2500, percentile: 60 },
+//     { minScore: 7.2501, maxScore: 7.7500, percentile: 70 },
+//     { minScore: 7.7501, maxScore: 8.2000, percentile: 80 },
+//     { minScore: 8.2001, maxScore: 8.5000, percentile: 90 },
+//     { minScore: 8.5001, maxScore: 10, percentile: 100 },
+//   ],
+//   [MindBalanceAdultCluster.HealthHabits]: [
+//     { minScore: 0, maxScore: 6.1700, percentile: 10 },
+//     { minScore: 6.1701, maxScore: 7.0000, percentile: 20 },
+//     { minScore: 7.0001, maxScore: 7.5000, percentile: 30 },
+//     { minScore: 7.5001, maxScore: 7.8300, percentile: 40 },
+//     { minScore: 7.8301, maxScore: 8.1700, percentile: 50 },
+//     { minScore: 8.1701, maxScore: 8.3300, percentile: 60 },
+//     { minScore: 8.3301, maxScore: 8.8300, percentile: 70 },
+//     { minScore: 8.8301, maxScore: 9.1700, percentile: 80 },
+//     { minScore: 9.1701, maxScore: 9.6700, percentile: 90 },
+//     { minScore: 9.6701, maxScore: 10, percentile: 100 },
+//   ],
+//   [MindBalanceAdultCluster.WellnessAccountability]: [
+//     { minScore: 0, maxScore: 6.1700, percentile: 10 },
+//     { minScore: 6.1701, maxScore: 7.0000, percentile: 20 },
+//     { minScore: 7.0001, maxScore: 7.5000, percentile: 30 },
+//     { minScore: 7.5001, maxScore: 7.8300, percentile: 40 },
+//     { minScore: 7.8301, maxScore: 8.1700, percentile: 50 },
+//     { minScore: 8.1701, maxScore: 8.3300, percentile: 60 },
+//     { minScore: 8.3301, maxScore: 8.8300, percentile: 70 },
+//     { minScore: 8.8301, maxScore: 9.1700, percentile: 80 },
+//     { minScore: 9.1701, maxScore: 9.6700, percentile: 90 },
+//     { minScore: 9.6701, maxScore: 10, percentile: 100 },
+//   ],
+// };
 
-const convertScoreToPercentile = (score: number): number => {
-  const roundedScore = Math.round(score);
-  return roundedScore * 10;
-};
+// const convertScoreToPercentile = (score: number): number => {
+//   const roundedScore = Math.round(score);
+//   return roundedScore * 10;
+// };
 
 // Format score to show whole numbers without decimals when appropriate
 const formatScore = (score: number): string => {
@@ -103,19 +105,19 @@ const formatScore = (score: number): string => {
   return score.toFixed(2);
 };
 
-export const determinePercentile = (clusterName: MindBalanceAdultCluster, score: number): number => {
-  const buckets = clusterPercentileBuckets[clusterName];
-  if (buckets) {
-    const bucket = buckets.find(
-      ({ minScore, maxScore }) => score >= minScore && score <= maxScore + 0.000001,
-    );
-    if (bucket) {
-      return bucket.percentile;
-    }
-  }
+// export const determinePercentile = (clusterName: MindBalanceAdultCluster, score: number): number => {
+//   const buckets = clusterPercentileBuckets[clusterName];
+//   if (buckets) {
+//     const bucket = buckets.find(
+//       ({ minScore, maxScore }) => score >= minScore && score <= maxScore + 0.000001,
+//     );
+//     if (bucket) {
+//       return bucket.percentile;
+//     }
+//   }
 
-  return convertScoreToPercentile(score);
-};
+//   return convertScoreToPercentile(score);
+// };
 
 const percentileRangeLabels: Record<number, string> = {
   10: 'Growth Opportunity',
@@ -134,6 +136,7 @@ const getUnderstandingCopy = (
   clusterLabel: string,
   percentile: number,
   language: Language,
+  level: AthleteLevel,
 ): ReactNode | null => {
   if (language !== Language.English) {
     return null;
@@ -145,11 +148,11 @@ const getUnderstandingCopy = (
   }
 
   const higherPercent = percentile === 100 ? 0 : 100 - percentile;
-  const strongText = `Your ${clusterLabel} score was in the ${rangeLabel} range (${percentile}th percentile) when compared to other youth athletes.`;
+  const strongText = `Your ${clusterLabel} score was in the ${rangeLabel} range (${percentile}th percentile) when compared to other ${level} athletes.`;
   const detailText =
     higherPercent === 0
-      ? `Almost no youth athletes are scoring higher than you in ${clusterLabel}.`
-      : `${higherPercent}% of youth athletes at your level reported scores higher than yours in ${clusterLabel}.`;
+      ? `Nearly all athletes at your level received your score or below in ${clusterLabel}.`
+      : `${higherPercent}% of athletes at your level reported scores higher than yours in ${clusterLabel}.`;
 
   return (
     <>
@@ -165,14 +168,16 @@ const ClusterSummaryPage = ({
   clusterFunFact,
   surveyResponse,
   pageNum,
+  level
 }: ClusterSummaryPageProps) => {
   const language = surveyResponse.language;
   const clusterResult = surveyResponse.clusterResults.find(cluster => cluster.name === clusterName);
   
   if (!clusterResult) return null;
 
-  const score = parseFloat(clusterResult.percentile);
-  const percentile = determinePercentile(clusterName, score);
+  const score = parseFloat(clusterResult.score);
+  const percentile = parseInt(clusterResult.percentile?.replace('%', ''))
+
 
   const classifyPercentile = (percentile: number, language: Language) => {
     if (language === Language.English) {
@@ -214,7 +219,7 @@ const ClusterSummaryPage = ({
       percentile <= obj.maxPercentile
   );
 
-  const understanding = getUnderstandingCopy(clusterLabel, percentile, language);
+  const understanding = getUnderstandingCopy(clusterLabel, percentile, language, level);
 
   return (
     <PageWrapper>
