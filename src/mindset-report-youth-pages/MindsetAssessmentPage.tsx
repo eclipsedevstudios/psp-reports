@@ -102,8 +102,30 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
     frisbee; volleyball; water polo; and
     weightlifting.
     </p>
+    <p>
+    Since the initial testing sample, over 1,000 athletes have taken the Mindset Assessment. That number continues to grow each day, as the Mindset Assessment is a trusted resource for youth athletic programs and individual youth athletes.
+    </p>
   </>,
-  [Language.Spanish]: <></>,
+  [Language.Spanish]: <>
+    <h2>NUESTRA MUESTRA DE PRUEBA</h2>
+    <p>
+    Nuestra muestra incluye más de 300
+    atletas de todos los niveles del deporte juvenil,
+    desde recreativos hasta jugadores de élite de
+    equipos nacionales juveniles. Los deportes
+    representados en nuestra muestra incluyen:
+    béisbol; baloncesto; boxeo; curling;
+    ciclismo; fútbol; golf; gimnasia;
+    hockey; lacrosse; artes marciales mixtas;
+    correr; remo; fútbol; softbol;
+    natación; triatlón; ultimate
+    frisbee; voleibol; waterpolo; y
+    levantamiento de pesas.
+    </p>
+    <p>
+    Desde la muestra de prueba inicial, más de 1,000 atletas han tomado la Evaluación de Mentalidad. Ese número continúa creciendo cada día, ya que la Evaluación de Mentalidad es un recurso confiable para programas atléticos juveniles y atletas juveniles individuales.
+    </p>
+  </>,
 }
 const BASE = 8;
 
@@ -120,13 +142,20 @@ const TestingSample = styled('div')`
   border: 4px solid rgb(191, 37, 35);
   border-radius: ${BASE}px;
   background-color: rgb(229, 229, 229);
-  padding: ${BASE * 2}px ${BASE * 4}px;
+  padding: ${BASE * 0.5}px ${BASE * 4}px ${BASE * 1}px;
 
   > h2 {
     font-family: 'League Gothic';
     font-size: 28px;
     text-transform: uppercase;
     font-weight: normal;
+    margin-bottom: ${BASE * 0.5}px;
+    margin-top: 0;
+  }
+
+  > p {
+    margin-top: ${BASE * 0.5}px;
+    margin-bottom: ${BASE * 0.5}px;
   }
 `;
 

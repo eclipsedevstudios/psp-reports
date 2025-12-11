@@ -53,7 +53,7 @@ const BASE = 8;
 
 const ContactUsWrapper = styled.div`
   background-color: rgb(238, 238, 238);
-  padding: ${BASE}px ${BASE * 4}px;
+  padding: 2px ${BASE * 4}px;
   border-radius: ${BASE}px;
 `;
 
