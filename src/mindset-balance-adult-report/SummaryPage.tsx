@@ -16,6 +16,7 @@ export interface MindBalanceClusterResult {
   score: string;
   comparedWithPeers?: string;
   comparedWithCollegeAthletes?: string;
+  comparedWithProAthletes?: string;
 }
 
 export interface MindBalanceSurveyResponse {
@@ -46,6 +47,7 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: MindBalanceSurveyResp
           // Convert percentage strings (e.g., "80%") to numbers (e.g., 80)
           const peersPercentile = cluster.comparedWithPeers ? parseInt(cluster.comparedWithPeers.replace('%', '')) : null;
           const collegePercentile = cluster.comparedWithCollegeAthletes ? parseInt(cluster.comparedWithCollegeAthletes.replace('%', '')) : null;
+          const proPercentile = cluster.comparedWithProAthletes ? parseInt(cluster.comparedWithProAthletes.replace('%', '')) : null;
           
           return (
             <>
@@ -73,6 +75,17 @@ const SummaryPage = ({ surveyResponse }: { surveyResponse: MindBalanceSurveyResp
                       <PercentileVisualization percentile={collegePercentile.toString()} />
                     </td>
                     <PercentileNumber>{collegePercentile}th</PercentileNumber>
+                  </tr>
+                )}
+                {proPercentile !== null && (
+                  <tr>
+                    <td>
+                      {comparedWithProAthletesString[language]}
+                    </td>
+                    <td>
+                      <PercentileVisualization percentile={proPercentile.toString()} />
+                    </td>
+                    <PercentileNumber>{proPercentile}th</PercentileNumber>
                   </tr>
                 )}
               </ClusterResult>
@@ -138,6 +151,11 @@ const comparedWithPeersString: { [key in Language]: ReactNode } = {
 const comparedWithCollegeAthletesString: { [key in Language]: ReactNode } = {
   [Language.English]: 'Compared with college athletes',
   [Language.Spanish]: 'Comparado con atletas universitarios',
+}
+
+const comparedWithProAthletesString: { [key in Language]: ReactNode } = {
+  [Language.English]: 'Compared with professional athletes',
+  [Language.Spanish]: 'Comparado con atletas profesionales',
 }
 
 const howToReadStrings: { [key in Language]: ReactNode } = {

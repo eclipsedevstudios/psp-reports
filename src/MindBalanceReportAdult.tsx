@@ -5,6 +5,7 @@ import MindsetAssessmentPage from "./mindset-balance-adult-report/MindsetAssessm
 import FiveClustersPage from "./mindset-balance-adult-report/FiveClustersPage";
 import SummaryPage, {
   MindBalanceSurveyResponse,
+  MindBalanceClusterResult,
 } from "./mindset-balance-adult-report/SummaryPage";
 import { Language, MindBalanceAdultCluster } from "./types";
 import "./App.css";
@@ -32,81 +33,114 @@ function MindsetBalanceReportAdult() {
   //   RESILIENT MINDSET
   const resilientMindsetScore = params.get("GrowthScore") || "0";
   const resilientMindsetPercentile = params.get("GP") || "0";
-  const resilientMindsetComparedWithPeers =
+  const resilientMindsetComparedWithProAthletes =
     params.get("GMProComparison") || "0";
   const resilientMindsetComparedWithCollegeAthletes =
     params.get("GMColComparison") || "0";
 
   // MENTAL SKILLS
   const mentalSkillsScore = params.get("MentalSkills") || "0";
-  const mentalSkillsPercentile = params.get("PP") || "0";
-  const mentalSkillsComparedWithPeers = params.get("MSProComparison") || "0";
+  const mentalSkillsPercentile = params.get("MP") || "0";
+  const mentalSkillsComparedWithProAthletes = params.get("MSProComparison") || "0";
   const mentalSkillsComparedWithCollegeAthletes =
     params.get("MSColComparison") || "0";
 
   // TEAM SUPPORT
   const teamSupportScore = params.get("Team") || "0";
   const teamSupportPercentile = params.get("TP") || "0";
-  const teamSupportComparedWithPeers = params.get("TSProComparison") || "0";
+  const teamSupportComparedWithProAthletes = params.get("TSProComparison") || "0";
   const teamSupportComparedWithCollegeAthletes =
     params.get("TSColComparison") || "0";
 
   // HEALTH BEHAVIORS
   const healthBehavioursScore = params.get("HealthHabits") || "0";
   const healthBehavioursPercentile = params.get("PhP") || "0";
-  const healthBehavioursComparedWithPeers =
+  const healthBehavioursComparedWithProAthletes =
     params.get("HHProComparison") || "0";
   const healthBehavioursComparedWithCollegeAthletes =
     params.get("HHColComparison") || "0";
 
   // WELLNESS ACCOUNTABILITY
   const wellnessAccountabilityScore = params.get("SelfReflection") || "0";
-  const wellnessAccountabilityPercentile = params.get("MP") || "0";
-  const wellnessAccountabilityComparedWithPeers =
+  const wellnessAccountabilityPercentile = params.get("PP") || "0";
+  const wellnessAccountabilityComparedWithProAthletes =
     params.get("SRProComparison") || "0";
   const wellnessAccountabilityComparedWithCollegeAthletes =
     params.get("SRColComparison") || "0";
 
+  // Determine which comparisons to include based on athlete level
+  const athleteLevel = level as AthleteLevel;
+  const shouldIncludeProComparison = 
+    athleteLevel === AthleteLevel.Collegiate ||
+    athleteLevel === AthleteLevel.SemiProfessional ||
+    athleteLevel === AthleteLevel.AdultRecreational;
+  
+  const shouldIncludeCollegeComparison = 
+    athleteLevel === AthleteLevel.HighSchool;
+
+  // Helper function to create cluster result with conditional fields
+  const createClusterResult = (
+    name: MindBalanceAdultCluster,
+    percentile: string,
+    score: string,
+    comparedWithProAthletes: string,
+    comparedWithCollegeAthletes: string
+  ): MindBalanceClusterResult => {
+    const result: MindBalanceClusterResult = {
+      name,
+      percentile,
+      score,
+      comparedWithPeers: percentile,
+    };
+
+    if (shouldIncludeProComparison) {
+      result.comparedWithProAthletes = comparedWithProAthletes;
+    }
+
+    if (shouldIncludeCollegeComparison) {
+      result.comparedWithCollegeAthletes = comparedWithCollegeAthletes;
+    }
+
+    return result;
+  };
+
   const surveyResponse: MindBalanceSurveyResponse = {
     clusterResults: [
-      {
-        name: MindBalanceAdultCluster.ResilientMindset,
-        percentile: resilientMindsetPercentile,
-        score: resilientMindsetScore,
-        comparedWithPeers: resilientMindsetComparedWithPeers,
-        comparedWithCollegeAthletes:
-          resilientMindsetComparedWithCollegeAthletes,
-      },
-      {
-        name: MindBalanceAdultCluster.MentalSkills,
-        percentile: mentalSkillsPercentile,
-        score: mentalSkillsScore,
-        comparedWithPeers: mentalSkillsComparedWithPeers,
-        comparedWithCollegeAthletes: mentalSkillsComparedWithCollegeAthletes,
-      },
-      {
-        name: MindBalanceAdultCluster.TeamSupport,
-        percentile: teamSupportPercentile,
-        score: teamSupportScore,
-        comparedWithPeers: teamSupportComparedWithPeers,
-        comparedWithCollegeAthletes: teamSupportComparedWithCollegeAthletes,
-      },
-      {
-        name: MindBalanceAdultCluster.HealthHabits,
-        percentile: healthBehavioursPercentile,
-        score: healthBehavioursScore,
-        comparedWithPeers: healthBehavioursComparedWithPeers,
-        comparedWithCollegeAthletes:
-          healthBehavioursComparedWithCollegeAthletes,
-      },
-      {
-        name: MindBalanceAdultCluster.WellnessAccountability,
-        percentile: wellnessAccountabilityPercentile,
-        score: wellnessAccountabilityScore,
-        comparedWithPeers: wellnessAccountabilityComparedWithPeers,
-        comparedWithCollegeAthletes:
-          wellnessAccountabilityComparedWithCollegeAthletes,
-      },
+      createClusterResult(
+        MindBalanceAdultCluster.ResilientMindset,
+        resilientMindsetPercentile,
+        resilientMindsetScore,
+        resilientMindsetComparedWithProAthletes,
+        resilientMindsetComparedWithCollegeAthletes
+      ),
+      createClusterResult(
+        MindBalanceAdultCluster.MentalSkills,
+        mentalSkillsPercentile,
+        mentalSkillsScore,
+        mentalSkillsComparedWithProAthletes,
+        mentalSkillsComparedWithCollegeAthletes
+      ),
+      createClusterResult(
+        MindBalanceAdultCluster.TeamSupport,
+        teamSupportPercentile,
+        teamSupportScore,
+        teamSupportComparedWithProAthletes,
+        teamSupportComparedWithCollegeAthletes
+      ),
+      createClusterResult(
+        MindBalanceAdultCluster.HealthHabits,
+        healthBehavioursPercentile,
+        healthBehavioursScore,
+        healthBehavioursComparedWithProAthletes,
+        healthBehavioursComparedWithCollegeAthletes
+      ),
+      createClusterResult(
+        MindBalanceAdultCluster.WellnessAccountability,
+        wellnessAccountabilityPercentile,
+        wellnessAccountabilityScore,
+        wellnessAccountabilityComparedWithProAthletes,
+        wellnessAccountabilityComparedWithCollegeAthletes
+      ),
     ],
     language: language,
     athleteName: athleteName,

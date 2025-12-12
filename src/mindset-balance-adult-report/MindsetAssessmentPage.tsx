@@ -138,9 +138,9 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
       frisbee; volleyball; water polo; and
       weightlifting.
     </p>
-    <p>
+    {/* <p>
       Since the initial testing sample, over 1,000 athletes have taken the Mindset Assessment. That number continues to grow each day, as the Mindset Assessment is a trusted resource for athletic programs and individual athletes.
-    </p>
+    </p> */}
   </>,
   [Language.Spanish]: <>
     <h2>NUESTRA MUESTRA DE PRUEBA</h2>
@@ -158,9 +158,9 @@ const testingSampleStrings: { [key in Language]: ReactNode } = {
       frisbee; voleibol; waterpolo; y
       levantamiento de pesas.
     </p>
-    <p>
+    {/* <p>
       Desde la muestra de prueba inicial, más de 1,000 atletas han tomado la Evaluación de Mentalidad. Ese número continúa creciendo cada día, ya que la Evaluación de Mentalidad es un recurso confiable para programas atléticos y atletas individuales.
-    </p>
+    </p> */}
   </>,
 }
 const BASE = 8;
