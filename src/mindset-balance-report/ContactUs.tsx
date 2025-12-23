@@ -36,20 +36,24 @@ const ContactUs = ({ language }: { language: Language }) => {
   );
 };
 
+const BASE = 8;
+
+const ContactUsText = styled.p`
+margin-top: 0px;
+`;
+
 const contactUsStrings: { [key in Language]: ReactNode } = {
   [Language.English]: (
-    <p>
+    <ContactUsText>
       <b>Stay on top of your mental game with MindBalanceSPORT</b>
-    </p>
+    </ContactUsText>
   ),
   [Language.Spanish]: (
-    <p>
+    <ContactUsText>
       <b>Mantente al tanto de tu juego mental con MindBalanceSPORT</b>
-    </p>
+    </ContactUsText>
   ),
 };
-
-const BASE = 8;
 
 const ContactUsWrapper = styled.div`
   background-color: rgb(238, 238, 238);

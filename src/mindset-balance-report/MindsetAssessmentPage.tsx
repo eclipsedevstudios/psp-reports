@@ -187,7 +187,7 @@ const MindsetDescription = styled('div')`
 const RightColumn = styled('div')`
   display: flex;
   flex-direction: column;
-  gap: ${BASE * 3}px;
+  gap: ${BASE * 1}px;
 `;
 
 const AssessmentImage = styled('img')`
@@ -200,7 +200,7 @@ const TestingSample = styled('div')`
   border: 4px solid rgb(191, 37, 35);
   border-radius: ${BASE}px;
   background-color: rgb(229, 229, 229);
-  padding: ${BASE * 0.5}px ${BASE * 4}px ${BASE * 1}px;
+  padding: ${BASE * 0.5}px ${BASE * 3}px ${BASE * 1}px;
 
   > h2 {
     font-family: 'League Gothic';
