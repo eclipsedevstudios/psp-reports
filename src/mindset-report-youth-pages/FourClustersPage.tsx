@@ -105,7 +105,7 @@ const pageHeaderStrings: { [key in Language]: ReactNode } = {
 const introParagraphStrings: { [key in Language]: ReactNode } = {
   [Language.English]: <>
     The clusters below include the thoughts, feelings, and behaviors that contribute to optimal
-    performance and mental health in youth athletes. All clusters have been identified as "very" or
+    performance and mental wellness in youth athletes. All clusters have been identified as "very" or
     "extremely" important by our pool of subject matter experts to positive performance
     outcomes and overall mental wellness.
   </>,
